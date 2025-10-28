@@ -3,7 +3,7 @@ extends Node3D
 var playerHP = 3
 @export var maxHP = 3
 var timer: int = 0
-@export var globalSpeed = 3.0
+@export var globalSpeed = 5.0
 
 @export var wall_prefabs : Array
 var wall_preloaded : Array

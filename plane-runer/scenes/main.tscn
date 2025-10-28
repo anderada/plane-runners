@@ -8,7 +8,7 @@
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_top_color = Color(0.22189113, 0.75928754, 0.78433245, 1)
 sky_horizon_color = Color(1.0448948, 1.231174, 1.3058194, 1)
-ground_bottom_color = Color(0.27481776, 0.4825384, 0.75607467, 1)
+ground_bottom_color = Color(0.46344495, 0.784682, 1, 1)
 ground_horizon_color = Color(1.0448948, 1.231174, 1.3058194, 1)
 
 [sub_resource type="Sky" id="Sky_0wfyh"]
@@ -26,6 +26,7 @@ glow_enabled = true
 script = ExtResource("1_sugp2")
 wall_prefabs = ["walls/0.tscn"]
 heart_paths = [NodePath("UI/CanvasGroup/Heart1"), NodePath("UI/CanvasGroup/Heart2"), NodePath("UI/CanvasGroup/Heart3")]
+frames_per_wall = 200
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sugp2")
