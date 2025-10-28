@@ -1,21 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmc1ytmvij23b"]
+[gd_scene load_steps=10 format=3 uid="uid://cmc1ytmvij23b"]
 
 [ext_resource type="Script" uid="uid://b3n8q5h2tbfj4" path="res://scripts/plane.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://crn4ds4amq8ba" path="res://scenes/test_wall.tscn" id="2_0wfyh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_top_color = Color(0.22189113, 0.75928754, 0.78433245, 1)
+sky_horizon_color = Color(1.0448948, 1.231174, 1.3058194, 1)
+ground_bottom_color = Color(0.27481776, 0.4825384, 0.75607467, 1)
+ground_horizon_color = Color(1.0448948, 1.231174, 1.3058194, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o5qli"]
-size = Vector3(0.673828, 0.669678, 1)
+size = Vector3(1.0568848, 1.1689453, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sgp6g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qli"]
 albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
-size = Vector3(13.6025, 21.885, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_sugp2"]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_o5qli"]
 
 [node name="main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sugp2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.53541)
@@ -23,15 +39,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.53541)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.00131979, -0.999973, 0.00721176, 0.214098, 0.00676198, 0.976789, -0.976811, 0.00283318, 0.214083, 0, -3.68678, -8.74228e-08)
 
-[node name="Plane" type="RigidBody3D" parent="."]
+[node name="Plane" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-gravity_scale = 0.0
 script = ExtResource("1_o5qli")
-speed = 1.3
 
 [node name="Collider" type="CollisionShape3D" parent="Plane"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -45,70 +56,33 @@ surface_material_override/0 = SubResource("StandardMaterial3D_o5qli")
 [node name="Walls" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 
-[node name="Wall" type="RigidBody3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 5)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-gravity_scale = 0.0
+[node name="Bottom" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall"]
-shape = SubResource("BoxShape3D_0wfyh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+shape = SubResource("WorldBoundaryShape3D_o5qli")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall/CollisionShape3D"]
-transform = Transform3D(13.5059, 0, 0, 0, 21.3672, 3.55271e-15, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_sugp2")
+[node name="Top" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="Wall2" type="RigidBody3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, -5)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-gravity_scale = 0.0
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Top"]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("WorldBoundaryShape3D_o5qli")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall2"]
-shape = SubResource("BoxShape3D_0wfyh")
+[node name="Left" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall2/CollisionShape3D"]
-transform = Transform3D(13.5059, 0, 0, 0, 21.3672, 3.55271e-15, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_sugp2")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Left"]
+transform = Transform3D(1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 0, 0, 1, -8, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_o5qli")
 
-[node name="Wall3" type="RigidBody3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, -9, 0)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-gravity_scale = 0.0
+[node name="Right" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall3"]
-shape = SubResource("BoxShape3D_0wfyh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Right"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 8, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_o5qli")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall3/CollisionShape3D"]
-transform = Transform3D(13.5059, 0, 0, 0, 21.3672, 3.55271e-15, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_sugp2")
-
-[node name="Wall4" type="RigidBody3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, -9, 0)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-gravity_scale = 0.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall4"]
-shape = SubResource("BoxShape3D_0wfyh")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall4/CollisionShape3D"]
-transform = Transform3D(13.5059, 0, 0, 0, 21.3672, 3.55271e-15, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_sugp2")
+[node name="Area3D" parent="." instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.507346, -32.360683)

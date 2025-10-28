@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://crn4ds4amq8ba"]
+
+[ext_resource type="Script" uid="uid://bmlyc7ur51tun" path="res://scripts/wall.gd" id="1_s5f7g"]
+[ext_resource type="Texture2D" uid="uid://wc3q5doj5pnh" path="res://test_wall.png" id="2_uwtpy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uvhfp"]
+size = Vector3(23.042969, 9.079727, 0.18652344)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wykyb"]
+size = Vector3(22.890625, 13.000488, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ktk7"]
+size = Vector3(19.349854, 11.638428, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e00m8"]
+size = Vector3(13.600586, 14.017334, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uvhfp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ktk7"]
+transparency = 1
+albedo_texture = ExtResource("2_uwtpy")
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_s5f7g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_uvhfp")
+debug_color = Color(0.972549, 0, 0.44313726, 1)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.209574, 0)
+shape = SubResource("BoxShape3D_wykyb")
+debug_color = Color(0.972549, 0, 0.43529412, 1)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.117809, 6.175102, 0)
+shape = SubResource("BoxShape3D_2ktk7")
+debug_color = Color(17.694864, 0, 12.623979, 1)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.17704, 6.175102, 0)
+shape = SubResource("BoxShape3D_e00m8")
+debug_color = Color(0.9647059, 0, 0.4862745, 1)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(8.410125, 0, 0, 0, -4.3711356e-08, -6.924012, 0, 0.9999993, -3.0265818e-07, -0.25985122, 5.7161527, -2.0061314e-08)
+mesh = SubResource("PlaneMesh_uvhfp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_2ktk7")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(8.410125, 0, 0, 0, -4.3711356e-08, -6.924012, 0, 0.9999993, -3.0265818e-07, -0.25985122, 5.7161527, -2.0061314e-08)
+mesh = SubResource("PlaneMesh_uvhfp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_2ktk7")
