@@ -24,7 +24,7 @@ glow_enabled = true
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_sugp2")
-wall_prefabs = ["walls/0.tscn"]
+wall_prefabs = ["walls/0.tscn", "walls/1.tscn"]
 heart_paths = [NodePath("UI/CanvasGroup/Heart1"), NodePath("UI/CanvasGroup/Heart2"), NodePath("UI/CanvasGroup/Heart3")]
 frames_per_wall = 200
 

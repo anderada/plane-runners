@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://crn4ds4amq8ba"]
+[gd_scene load_steps=4 format=3 uid="uid://d8b4lv1hki16"]
 
-[ext_resource type="Script" uid="uid://bmlyc7ur51tun" path="res://scripts/wall.gd" id="1_s5f7g"]
+[ext_resource type="Script" uid="uid://bmlyc7ur51tun" path="res://scripts/wall.gd" id="1_v8f2m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_j3a3d"]
 
@@ -8,12 +8,12 @@
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [node name="Area3D" type="Area3D"]
-script = ExtResource("1_s5f7g")
+script = ExtResource("1_v8f2m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.7396636, 0, 0, 0, 29.868876, 0, 0, 0, 4.699939, -5.6150255, -10.109909, 0)
+transform = Transform3D(4.7396636, 0, 0, 0, 29.868876, 0, 0, 0, 4.699939, 5.692026, -10.109909, 0)
 mesh = SubResource("BoxMesh_j3a3d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(4.7396636, 0, 0, 0, 29.868876, 0, 0, 0, 4.699939, -5.6150255, -10.109909, 0)
+transform = Transform3D(4.7396636, 0, 0, 0, 29.868876, 0, 0, 0, 4.699939, 5.692026, -10.109909, 0)
 shape = SubResource("ConcavePolygonShape3D_rc32d")

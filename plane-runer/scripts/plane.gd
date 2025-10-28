@@ -47,4 +47,3 @@ func hit_wall(body: Node3D)->void:
 
 func connect_wall(wall : Area3D)->void:
 	wall.connect("body_entered", hit_wall)
-	print("connected")

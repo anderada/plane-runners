@@ -23,7 +23,8 @@ func _physics_process(_delta: float) -> void:
 		spawn_wall()
 
 func spawn_wall()->void:
-	var newWall = load(wall_prefabs[0]).instantiate()
+	var randomIndex = randi_range(0,wall_prefabs.size() - 1)
+	var newWall = load(wall_prefabs[randomIndex]).instantiate()
 	add_child(newWall)
 	newWall.position = Vector3(0,0,-20)
 
