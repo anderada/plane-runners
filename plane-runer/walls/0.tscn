@@ -25,32 +25,33 @@ albedo_texture = ExtResource("2_uwtpy")
 script = ExtResource("1_s5f7g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.9249973, 0)
 shape = SubResource("BoxShape3D_uvhfp")
 debug_color = Color(0.972549, 0, 0.44313726, 1)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.209574, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.284576, 0)
 shape = SubResource("BoxShape3D_wykyb")
 debug_color = Color(0.972549, 0, 0.43529412, 1)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.117809, 6.175102, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.117809, 0.2501049, 0)
 shape = SubResource("BoxShape3D_2ktk7")
 debug_color = Color(17.694864, 0, 12.623979, 1)
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.17704, 6.175102, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.17704, 0.2501049, 0)
 shape = SubResource("BoxShape3D_e00m8")
 debug_color = Color(0.9647059, 0, 0.4862745, 1)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(8.410125, 0, 0, 0, -4.3711356e-08, -6.924012, 0, 0.9999993, -3.0265818e-07, -0.25985122, 5.7161527, -2.0061314e-08)
+transform = Transform3D(8.410125, 0, 0, 0, -4.3711356e-08, -6.924012, 0, 0.9999993, -3.0265818e-07, -0.25985122, -0.20884466, -2.0061314e-08)
 mesh = SubResource("PlaneMesh_uvhfp")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_2ktk7")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(8.410125, 0, 0, 0, -4.3711356e-08, -6.924012, 0, 0.9999993, -3.0265818e-07, -0.25985122, 5.7161527, -2.0061314e-08)
+transform = Transform3D(8.410125, 0, 0, 0, -4.3711356e-08, -6.924012, 0, 0.9999993, -3.0265818e-07, -0.25985122, -0.20884466, -2.0061314e-08)
 mesh = SubResource("PlaneMesh_uvhfp")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_2ktk7")

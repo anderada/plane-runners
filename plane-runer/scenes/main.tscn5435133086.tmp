@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmc1ytmvij23b"]
+[gd_scene load_steps=11 format=3 uid="uid://cmc1ytmvij23b"]
 
+[ext_resource type="Script" uid="uid://b3n8q5h2tbfj4" path="res://scripts/plane.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c6o0xexcp7pi5" path="res://scripts/main.gd" id="1_sugp2"]
-[ext_resource type="Script" uid="uid://brt1j84wfhd1x" path="res://scripts/camera.gd" id="2_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://cp4sljfvtkskc" path="res://scenes/plane.tscn" id="3_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://bg7lgf7gj43ki" path="res://Heart-icon.png" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://crn4ds4amq8ba" path="res://walls/0.tscn" id="2_0wfyh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_top_color = Color(0.22189113, 0.75928754, 0.78433245, 1)
@@ -20,75 +19,75 @@ sky = SubResource("Sky_0wfyh")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5qli"]
+size = Vector3(1.0568848, 1.1689453, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sgp6g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qli"]
+albedo_color = Color(1, 0, 0, 1)
+
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_o5qli"]
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_sugp2")
+maxHP = null
+globalSpeed = null
 wall_prefabs = ["walls/0.tscn"]
-heart_paths = [NodePath("UI/CanvasGroup/Heart1"), NodePath("UI/CanvasGroup/Heart2"), NodePath("UI/CanvasGroup/Heart3")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sugp2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.53541)
-script = ExtResource("2_jyhfs")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.00131979, -0.999973, 0.00721176, 0.214098, 0.00676198, 0.976789, -0.976811, 0.00283318, 0.214083, 0, -3.68678, -8.74228e-08)
 
-[node name="Plane" parent="." instance=ExtResource("3_jyhfs")]
+[node name="Plane" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_o5qli")
 
-[node name="Boundaries" type="Node3D" parent="."]
+[node name="Collider" type="CollisionShape3D" parent="Plane"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_o5qli")
+
+[node name="Mesh" type="MeshInstance3D" parent="Plane"]
+mesh = SubResource("CapsuleMesh_sgp6g")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_o5qli")
+
+[node name="Walls" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 
-[node name="Bottom" type="StaticBody3D" parent="Boundaries"]
+[node name="Bottom" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Bottom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 shape = SubResource("WorldBoundaryShape3D_o5qli")
 
-[node name="Top" type="StaticBody3D" parent="Boundaries"]
+[node name="Top" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Top"]
-transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 4.5, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Top"]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 5, 0)
 shape = SubResource("WorldBoundaryShape3D_o5qli")
 
-[node name="Left" type="StaticBody3D" parent="Boundaries"]
+[node name="Left" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Left"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Left"]
 transform = Transform3D(1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 0, 0, 1, -8, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_o5qli")
 
-[node name="Right" type="StaticBody3D" parent="Boundaries"]
+[node name="Right" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Right"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Right"]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 8, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_o5qli")
 
-[node name="UI" type="Node2D" parent="."]
-
-[node name="CanvasGroup" type="CanvasGroup" parent="UI"]
-
-[node name="Heart1" type="Sprite2D" parent="UI/CanvasGroup"]
-position = Vector2(50.249996, 51.249996)
-scale = Vector2(0.2832031, 0.2832031)
-texture = ExtResource("3_sugp2")
-
-[node name="Heart2" type="Sprite2D" parent="UI/CanvasGroup"]
-position = Vector2(140.25, 51.249996)
-scale = Vector2(0.2832031, 0.2832031)
-texture = ExtResource("3_sugp2")
-
-[node name="Heart3" type="Sprite2D" parent="UI/CanvasGroup"]
-position = Vector2(229.25, 51.249996)
-scale = Vector2(0.2832031, 0.2832031)
-texture = ExtResource("3_sugp2")
-
-[connection signal="player_hit" from="Plane" to="." method="take_damage"]
-[connection signal="player_hit" from="Plane" to="Camera3D" method="camera_shake"]
+[node name="Area3D" parent="." instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.507346, -32.360683)

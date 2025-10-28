@@ -1,9 +1,10 @@
 extends Area3D
 
-@export var speed = 5.0
+var speed = 0.0
 
 func _ready() -> void:
-	%Plane.connect_wall(self)
+	get_tree().get_root().get_node("main").find_child("Plane").connect_wall(self)
+	speed = get_tree().get_root().get_node("main").globalSpeed
 
 func _physics_process(delta: float) -> void:
 	position += Vector3(0,0,speed * delta)
