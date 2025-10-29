@@ -17,8 +17,6 @@ var state = "menu"
 
 func _ready() -> void:
 	velocity = Vector3(0,0,0)
-	get_speed()
-	get_state()
 
 func _physics_process(_delta: float) -> void:
 	get_speed()
@@ -72,5 +70,19 @@ func hit_wall(body: Node3D)->void:
 		player_hit.emit()
 		hurtTimer = iFrames
 
+func ring(body: Node3D)->void:
+	if(body.name == "Plane"):
+		get_tree().get_root().get_node("main").ring()
+		
+func ring_high(body: Node3D)->void:
+	if(body.name == "Plane"):
+		get_tree().get_root().get_node("main").ring_high()
+
 func connect_wall(wall : Area3D)->void:
 	wall.connect("body_entered", hit_wall)
+	
+func connect_ring_high(wall : Area3D)->void:
+	wall.connect("body_entered", ring_high)
+	
+func connect_ring_low(wall : Area3D)->void:
+	wall.connect("body_entered", ring)

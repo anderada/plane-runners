@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://dkfc35o8p12rs"]
 
 [ext_resource type="Script" uid="uid://cluj7fmovssj3" path="res://scripts/ui.gd" id="1_wm3ai"]
+[ext_resource type="Theme" uid="uid://datm4mvnqk4ql" path="res://theme.tres" id="2_8dubc"]
 [ext_resource type="Texture2D" uid="uid://bc46au2fs4g48" path="res://Sprites/Heart-icon.png" id="2_wm3ai"]
 [ext_resource type="Shader" uid="uid://cya14id1idpfa" path="res://shaders/ui-fire.gdshader" id="2_x4jx1"]
 [ext_resource type="Texture2D" uid="uid://dwb302d67mem5" path="res://Sprites/noise_combined.png" id="4_wm3ai"]
-[ext_resource type="Texture2D" uid="uid://dwp7c5ibcrgwr" path="res://Sprites/prompt.png" id="5_8dubc"]
 [ext_resource type="Texture2D" uid="uid://bs02113qf45ky" path="res://Sprites/tile2.png" id="6_8dubc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yev5y"]
@@ -12,14 +12,17 @@ shader = ExtResource("2_x4jx1")
 shader_parameter/noise_image = ExtResource("4_wm3ai")
 shader_parameter/speed = 1.13
 shader_parameter/flame_middle = Color(1, 0.964, 0.82, 1)
-shader_parameter/flame_edge = Color(1, 0.3, 0, 1)
+shader_parameter/flame_edge = Color(0, 0.85624886, 0.8560803, 1)
 shader_parameter/threshold = 0.975
 shader_parameter/intensity = 16.07
 shader_parameter/airyness = 0.135
 
-[node name="UI" type="Node2D"]
+[node name="UI" type="Node2D" node_paths=PackedStringArray("menuUI", "gameUI", "pointsLabel")]
 script = ExtResource("1_wm3ai")
 padIndicators = [NodePath("Menu/Control/Tile/Fire"), NodePath("Menu/Control/Tile2/Fire2"), NodePath("Menu/Control/Tile3/Fire3"), NodePath("Menu/Control/Tile4/Fire4"), NodePath("Menu/Control/Tile5/Fire5"), NodePath("Menu/Control/Tile6/Fire6"), NodePath("Menu/Control/Tile7/Fire7"), NodePath("Menu/Control/Tile8/Fire8")]
+menuUI = NodePath("Menu")
+gameUI = NodePath("Game UI")
+pointsLabel = NodePath("Game UI/Points")
 
 [node name="Game UI" type="Control" parent="."]
 layout_mode = 3
@@ -32,6 +35,7 @@ offset_left = 1.0
 offset_right = 41.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("2_8dubc")
 
 [node name="Heart1" type="Sprite2D" parent="Game UI"]
 position = Vector2(75.85, 75.85)
@@ -48,6 +52,15 @@ position = Vector2(363, 75.85)
 scale = Vector2(0.4832031, 0.4832031)
 texture = ExtResource("2_wm3ai")
 
+[node name="Points" type="Label" parent="Game UI"]
+layout_mode = 0
+offset_left = 821.0
+offset_top = -28.0
+offset_right = 1901.0
+offset_bottom = 172.0
+text = "5000"
+horizontal_alignment = 2
+
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -58,6 +71,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 20.0
+theme = ExtResource("2_8dubc")
 
 [node name="Control" type="Control" parent="Menu"]
 anchors_preset = 0
@@ -170,7 +184,11 @@ position = Vector2(-1.2497559, -391.6627)
 scale = Vector2(0.50883895, 1.740528)
 texture = ExtResource("4_wm3ai")
 
-[node name="Prompt" type="Sprite2D" parent="Menu"]
-position = Vector2(956, 124.00001)
-scale = Vector2(0.64982307, 0.64982307)
-texture = ExtResource("5_8dubc")
+[node name="Points" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 393.0
+offset_top = -31.0
+offset_right = 1473.0
+offset_bottom = 169.0
+text = "Step on to play"
+horizontal_alignment = 2
