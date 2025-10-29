@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkfc35o8p12rs"]
+[gd_scene load_steps=10 format=3 uid="uid://dkfc35o8p12rs"]
 
 [ext_resource type="Script" uid="uid://cluj7fmovssj3" path="res://scripts/ui.gd" id="1_wm3ai"]
 [ext_resource type="Theme" uid="uid://datm4mvnqk4ql" path="res://theme.tres" id="2_8dubc"]
@@ -7,22 +7,39 @@
 [ext_resource type="Texture2D" uid="uid://dwb302d67mem5" path="res://Sprites/noise_combined.png" id="4_wm3ai"]
 [ext_resource type="Texture2D" uid="uid://bs02113qf45ky" path="res://Sprites/tile2.png" id="6_8dubc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yev5y"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8dubc"]
+resource_local_to_scene = true
 shader = ExtResource("2_x4jx1")
 shader_parameter/noise_image = ExtResource("4_wm3ai")
-shader_parameter/speed = 1.13
-shader_parameter/flame_middle = Color(1, 0.964, 0.82, 1)
-shader_parameter/flame_edge = Color(0, 0.85624886, 0.8560803, 1)
+shader_parameter/speed = 0.63
+shader_parameter/flame_middle = Color(1, 1, 1, 1)
+shader_parameter/flame_edge = Color(0.9333333, 1, 0, 1)
 shader_parameter/threshold = 0.975
-shader_parameter/intensity = 16.07
+shader_parameter/intensity = 16.73
 shader_parameter/airyness = 0.135
 
-[node name="UI" type="Node2D" node_paths=PackedStringArray("menuUI", "gameUI", "pointsLabel")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p7vwb"]
+resource_local_to_scene = true
+shader = ExtResource("2_x4jx1")
+shader_parameter/noise_image = ExtResource("4_wm3ai")
+shader_parameter/speed = 0.63
+shader_parameter/flame_middle = Color(1, 1, 1, 1)
+shader_parameter/flame_edge = Color(0, 1, 0.79999995, 1)
+shader_parameter/threshold = 0.975
+shader_parameter/intensity = 16.73
+shader_parameter/airyness = 0.135
+
+[sub_resource type="Theme" id="Theme_8dubc"]
+default_font_size = 65
+
+[node name="UI" type="Node2D" node_paths=PackedStringArray("menuUI", "gameUI", "pointsLabel", "score", "hiscore")]
 script = ExtResource("1_wm3ai")
-padIndicators = [NodePath("Menu/Control/Tile/Fire"), NodePath("Menu/Control/Tile2/Fire2"), NodePath("Menu/Control/Tile3/Fire3"), NodePath("Menu/Control/Tile4/Fire4"), NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+padIndicators = [NodePath("Menu/Control/Tile/Indicator"), NodePath("Menu/Control/Tile2/Indicator"), NodePath("Menu/Control/Tile3/Indicator"), NodePath("Menu/Control/Tile4/Indicator")]
 menuUI = NodePath("Menu")
 gameUI = NodePath("Game UI")
 pointsLabel = NodePath("Game UI/Points")
+score = NodePath("Menu/Control2/Score")
+hiscore = NodePath("Menu/Control2/HighScore")
 
 [node name="Game UI" type="Control" parent="."]
 layout_mode = 3
@@ -75,21 +92,26 @@ theme = ExtResource("2_8dubc")
 
 [node name="Control" type="Control" parent="Menu"]
 anchors_preset = 0
-offset_left = -104.0
-offset_top = -170.0
-offset_right = -64.0
-offset_bottom = -130.0
+offset_left = -291.0
+offset_top = -123.0
+offset_right = -251.0
+offset_bottom = -83.0
 
 [node name="Tile" type="Sprite2D" parent="Menu/Control"]
 position = Vector2(649, 671)
 scale = Vector2(0.80000246, 0.4800049)
 texture = ExtResource("6_8dubc")
 
-[node name="Fire" type="Sprite2D" parent="Menu/Control/Tile"]
+[node name="Indicator" type="Node2D" parent="Menu/Control/Tile"]
+
+[node name="Tile5" type="Sprite2D" parent="Menu/Control/Tile/Indicator"]
+texture = ExtResource("6_8dubc")
+
+[node name="Fire2" type="Sprite2D" parent="Menu/Control/Tile/Indicator"]
 texture_filter = 1
 texture_repeat = 2
-material = SubResource("ShaderMaterial_yev5y")
-position = Vector2(-2.5, -391.66272)
+material = SubResource("ShaderMaterial_8dubc")
+position = Vector2(-2.499939, -391.66284)
 scale = Vector2(0.50883895, 1.740528)
 texture = ExtResource("4_wm3ai")
 
@@ -98,11 +120,16 @@ position = Vector2(870, 671)
 scale = Vector2(0.80000246, 0.4800049)
 texture = ExtResource("6_8dubc")
 
-[node name="Fire2" type="Sprite2D" parent="Menu/Control/Tile2"]
+[node name="Indicator" type="Node2D" parent="Menu/Control/Tile2"]
+
+[node name="Tile5" type="Sprite2D" parent="Menu/Control/Tile2/Indicator"]
+texture = ExtResource("6_8dubc")
+
+[node name="Fire2" type="Sprite2D" parent="Menu/Control/Tile2/Indicator"]
 texture_filter = 1
 texture_repeat = 2
-material = SubResource("ShaderMaterial_yev5y")
-position = Vector2(-6.249977, -391.66272)
+material = SubResource("ShaderMaterial_8dubc")
+position = Vector2(-2.499939, -391.66284)
 scale = Vector2(0.50883895, 1.740528)
 texture = ExtResource("4_wm3ai")
 
@@ -111,11 +138,16 @@ position = Vector2(1241, 671)
 scale = Vector2(0.80000246, 0.4800049)
 texture = ExtResource("6_8dubc")
 
-[node name="Fire3" type="Sprite2D" parent="Menu/Control/Tile3"]
+[node name="Indicator" type="Node2D" parent="Menu/Control/Tile3"]
+
+[node name="Tile5" type="Sprite2D" parent="Menu/Control/Tile3/Indicator"]
+texture = ExtResource("6_8dubc")
+
+[node name="Fire2" type="Sprite2D" parent="Menu/Control/Tile3/Indicator"]
 texture_filter = 1
 texture_repeat = 2
-material = SubResource("ShaderMaterial_yev5y")
-position = Vector2(1.250042, -391.66278)
+material = SubResource("ShaderMaterial_p7vwb")
+position = Vector2(-2.499939, -391.66284)
 scale = Vector2(0.50883895, 1.740528)
 texture = ExtResource("4_wm3ai")
 
@@ -124,19 +156,89 @@ position = Vector2(1459, 671)
 scale = Vector2(0.80000246, 0.4800049)
 texture = ExtResource("6_8dubc")
 
-[node name="Fire4" type="Sprite2D" parent="Menu/Control/Tile4"]
+[node name="Indicator" type="Node2D" parent="Menu/Control/Tile4"]
+
+[node name="Tile5" type="Sprite2D" parent="Menu/Control/Tile4/Indicator"]
+texture = ExtResource("6_8dubc")
+
+[node name="Fire2" type="Sprite2D" parent="Menu/Control/Tile4/Indicator"]
 texture_filter = 1
 texture_repeat = 2
-material = SubResource("ShaderMaterial_yev5y")
-position = Vector2(-1.249939, -391.66284)
+material = SubResource("ShaderMaterial_p7vwb")
+position = Vector2(-2.499939, -391.66284)
 scale = Vector2(0.50883895, 1.740528)
 texture = ExtResource("4_wm3ai")
 
-[node name="Points" type="Label" parent="Menu"]
+[node name="Prompt" type="Label" parent="Menu"]
 layout_mode = 0
-offset_left = 393.0
-offset_top = -31.0
-offset_right = 1473.0
-offset_bottom = 169.0
+offset_left = 206.0
+offset_top = 16.0
+offset_right = 1286.0
+offset_bottom = 216.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 65
 text = "Step on to play"
+horizontal_alignment = 2
+
+[node name="P1" type="Label" parent="Menu/Prompt"]
+layout_mode = 0
+offset_left = -744.0
+offset_top = 582.0
+offset_right = 336.0
+offset_bottom = 782.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 65
+text = "P1"
+horizontal_alignment = 2
+
+[node name="P2" type="Label" parent="Menu/Prompt"]
+layout_mode = 0
+offset_left = -135.0
+offset_top = 586.0
+offset_right = 945.0
+offset_bottom = 786.0
+theme_override_colors/font_color = Color(0, 1, 0.79999995, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 65
+text = "P2"
+horizontal_alignment = 2
+
+[node name="Control2" type="Control" parent="Menu"]
+anchors_preset = 0
+offset_left = 893.0
+offset_top = 761.0
+offset_right = 933.0
+offset_bottom = 801.0
+theme = SubResource("Theme_8dubc")
+
+[node name="Panel" type="Panel" parent="Menu/Control2"]
+layout_mode = 0
+offset_left = 590.0
+offset_top = -763.0
+offset_right = 1090.0
+offset_bottom = 2237.0
+
+[node name="Score" type="Label" parent="Menu/Control2"]
+layout_mode = 0
+offset_left = -103.0
+offset_top = -177.0
+offset_right = 977.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.5833334, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 65
+text = "Your score"
+horizontal_alignment = 2
+
+[node name="HighScore" type="Label" parent="Menu/Control2"]
+layout_mode = 0
+offset_left = -80.0
+offset_top = -729.0
+offset_right = 1000.0
+offset_bottom = -529.0
+theme_override_colors/font_color = Color(0.99999994, 0.0741991, 0.1706737, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 60
+text = "High Scores"
 horizontal_alignment = 2

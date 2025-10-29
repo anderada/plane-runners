@@ -4,6 +4,8 @@ extends Node2D
 @export var menuUI : Control
 @export var gameUI : Control
 @export var pointsLabel : Label
+@export var score : Label
+@export var hiscore : Label
 
 var state = "menu"
 
@@ -11,8 +13,21 @@ func _physics_process(_delta: float) -> void:
 	get_state()
 	if(state == "menu"):
 		showIndicators()
+		getScores()
 	else:
 		updatePoints()
+
+func getScores()->void:
+	var points = get_tree().get_root().get_node("main").points
+	score.text = "Your Score:\n" + str(points)
+	var hiscores = get_tree().get_root().get_node("main").scores
+	hiscore.text = "High Scores:\n"
+	var i = 0
+	for ranking in hiscores:
+		if(i == 3):
+			break
+		hiscore.text = hiscore.text + str(ranking) + "\n"
+		i += 1
 
 func updatePoints()->void:
 	var points = get_tree().get_root().get_node("main").points

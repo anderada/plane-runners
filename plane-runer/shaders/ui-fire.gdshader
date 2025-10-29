@@ -31,6 +31,6 @@ void fragment(){
 		COLOR = flame_middle;
 	}
 
-	new_alpha = round(new_alpha);
+	//new_alpha = round(new_alpha);
 	COLOR.a = new_alpha;
 }

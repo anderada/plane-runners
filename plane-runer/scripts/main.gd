@@ -19,7 +19,8 @@ var hearts : Array
 
 @export var points : int = 0
 
-var scores : Array
+@export var scores : Array
+
 var extantWalls : Array
 
 func _ready() -> void:
@@ -43,11 +44,13 @@ func _physics_process(_delta: float) -> void:
 		gameState = "menu"
 		scores.append(points)
 		scores.sort()
+		scores.reverse()
 		playerHP = 3
 		%Plane.reset_position()
 		for wall in extantWalls:
 			wall.queue_free()
 		extantWalls.clear()
+		updateHearts()
 
 func ring()->void:
 	points += 100
@@ -72,11 +75,15 @@ func spawn_wall()->void:
 
 func take_damage()->void:
 	playerHP -= 1
+	updateHearts()
+
+func updateHearts()->void:
 	for heart in hearts:
 		heart.visible = false
 	for i in range(playerHP):
 		hearts[i].visible = true
 		
+
 func num_inputs()->int:
 	var inputs = 0
 	
@@ -87,14 +94,6 @@ func num_inputs()->int:
 	if(Input.is_action_pressed("Right1")):
 		inputs+=1
 	if(Input.is_action_pressed("Right2")):
-		inputs+=1
-	if(Input.is_action_pressed("Up1")):
-		inputs+=1
-	if(Input.is_action_pressed("Up2")):
-		inputs+=1
-	if(Input.is_action_pressed("Down1")):
-		inputs+=1
-	if(Input.is_action_pressed("Down2")):
 		inputs+=1
 		
 	return inputs
