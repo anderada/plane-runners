@@ -1,15 +1,17 @@
 extends CharacterBody3D
 
 @export var speed : float = 1
-var horizontalSpeeds = [0.7, 1.4]
-var verticalSpeeds = [0.5,1]
+var horizontalSpeeds = [0.7, 2.1]
+var verticalSpeeds = [0.5,1.5]
 var horizontalRotations = [15,30]
 var verticalRotations = [15,30]
+
+var acceleration : Vector3
 
 signal player_hit
 
 func _ready() -> void:
-	velocity = Vector3(horizontalSpeeds[0], verticalSpeeds[0], 0)
+	velocity = Vector3(0,0,0)
 
 func _physics_process(_delta: float) -> void:
 	velocity *= speed
