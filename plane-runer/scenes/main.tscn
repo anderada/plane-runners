@@ -24,7 +24,8 @@ glow_enabled = true
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_sugp2")
-wall_prefabs = ["walls/0.tscn", "walls/1.tscn"]
+globalSpeed = 10.0
+wall_prefabs = ["walls/0.tscn", "walls/1.tscn", "walls/2.tscn"]
 heart_paths = ["UI/Game UI/Heart1", "UI/Game UI/Heart2", "UI/Game UI/Heart3"]
 frames_per_wall = 200
 
@@ -41,7 +42,7 @@ transform = Transform3D(-0.00131979, -0.999973, 0.00721176, 0.214098, 0.00676198
 
 [node name="Plane" parent="." instance=ExtResource("3_jyhfs")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.8215694, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 iFrames = 200
 
 [node name="Boundaries" type="Node3D" parent="."]

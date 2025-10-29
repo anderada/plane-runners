@@ -13,11 +13,14 @@ var hearts : Array
 
 @export var wall_spawn_distance = 100
 
-@export var frames_per_wall : int = 500
+@export var frames_per_wall : int = 750
 
 @export var gameState = "menu"
 
 @export var points : int = 0
+
+var scores : Array
+var extantWalls : Array
 
 func _ready() -> void:
 	for heart in heart_paths:
@@ -34,6 +37,17 @@ func _physics_process(_delta: float) -> void:
 			points += 1
 		if(timer % frames_per_wall == 1):
 			spawn_wall()
+			remove_old_walls()
+	
+	if playerHP <= 0:
+		gameState = "menu"
+		scores.append(points)
+		scores.sort()
+		playerHP = 3
+		%Plane.reset_position()
+		for wall in extantWalls:
+			wall.queue_free()
+		extantWalls.clear()
 
 func ring()->void:
 	points += 100
@@ -41,13 +55,20 @@ func ring()->void:
 func ring_high()->void:
 	points += 500
 
+func remove_old_walls()->void:
+	for wall in extantWalls:
+		if wall.position.z >= 10:
+			extantWalls.erase(wall)
+			wall.queue_free()
+
 func spawn_wall()->void:
 	var randomIndex = randi_range(0,wall_prefabs.size() - 1)
 	var newWall = load(wall_prefabs[randomIndex]).instantiate()
 	add_child(newWall)
-	var randy = randi_range(-1.5,1.5)
-	var randx = randi_range(-3,3)
-	newWall.position = Vector3(randx,randy,-wall_spawn_distance)
+	extantWalls.append(newWall)
+	@warning_ignore("narrowing_conversion")
+	var randx = randi_range(-1,1)
+	newWall.position = Vector3(randx,0,-wall_spawn_distance)
 
 func take_damage()->void:
 	playerHP -= 1

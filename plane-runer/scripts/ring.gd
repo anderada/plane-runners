@@ -8,3 +8,7 @@ func _ready() -> void:
 		get_tree().get_root().get_node("main").find_child("Plane").connect_ring_high(self)
 	else:
 		get_tree().get_root().get_node("main").find_child("Plane").connect_ring_low(self)
+
+func _physics_process(_delta: float) -> void:
+	if(global_position.z >= 1):
+		queue_free()

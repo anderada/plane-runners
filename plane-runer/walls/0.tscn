@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=4 uid="uid://crn4ds4amq8ba"]
+[gd_scene load_steps=17 format=4 uid="uid://crn4ds4amq8ba"]
 
 [ext_resource type="Script" uid="uid://bmlyc7ur51tun" path="res://scripts/wall.gd" id="1_s5f7g"]
 [ext_resource type="Texture2D" uid="uid://dpp8euq65de8i" path="res://Models/BuildingDes_slightly longer square.png" id="2_rc32d"]
 [ext_resource type="Shader" uid="uid://dlua6pneefck4" path="res://shaders/closeTransparency.gdshader" id="3_g3e3q"]
 [ext_resource type="PackedScene" uid="uid://5clglpovj1c1" path="res://scenes/ring.tscn" id="4_b15gs"]
+[ext_resource type="PackedScene" uid="uid://b0nihil4i2ufn" path="res://scenes/ring_high.tscn" id="5_0bgta"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjkcg"]
 resource_name = "Material.001"
@@ -149,13 +150,12 @@ transform = Transform3D(0.103968926, 0, 0, 0, 0.103968926, 0, 0, 0, 0.103968926,
 mesh = SubResource("ArrayMesh_s706n")
 skeleton = NodePath("")
 
-[node name="Ring" parent="BuildingDes" instance=ExtResource("4_b15gs")]
-transform = Transform3D(0.287343, 0, 0, 0, 0.287343, 0, 0, 0, 1, 2.8598285, 3.791757, 0.008749962)
-
-[node name="Ring2" parent="BuildingDes" instance=ExtResource("4_b15gs")]
-transform = Transform3D(0.287343, 0, 0, 0, 0.287343, 0, 0, 0, 1, 0.83891463, 4.6966963, 4.339447)
-high_value = true
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(3.4801614, 0, 0, 0, 15.25795, 0, 0, 0, 1, -5.855191, -15.438815, 0.19792461)
 shape = SubResource("ConcavePolygonShape3D_g3e3q")
+
+[node name="Ring_high" parent="." instance=ExtResource("5_0bgta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1993945, 1.5352719, 2.2682438)
+
+[node name="Ring" parent="." instance=ExtResource("4_b15gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.312721, -2.3900273, 1.5550756)

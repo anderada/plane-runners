@@ -19,7 +19,7 @@ shader_parameter/airyness = 0.135
 
 [node name="UI" type="Node2D" node_paths=PackedStringArray("menuUI", "gameUI", "pointsLabel")]
 script = ExtResource("1_wm3ai")
-padIndicators = [NodePath("Menu/Control/Tile/Fire"), NodePath("Menu/Control/Tile2/Fire2"), NodePath("Menu/Control/Tile3/Fire3"), NodePath("Menu/Control/Tile4/Fire4"), NodePath("Menu/Control/Tile5/Fire5"), NodePath("Menu/Control/Tile6/Fire6"), NodePath("Menu/Control/Tile7/Fire7"), NodePath("Menu/Control/Tile8/Fire8")]
+padIndicators = [NodePath("Menu/Control/Tile/Fire"), NodePath("Menu/Control/Tile2/Fire2"), NodePath("Menu/Control/Tile3/Fire3"), NodePath("Menu/Control/Tile4/Fire4"), NodePath(""), NodePath(""), NodePath(""), NodePath("")]
 menuUI = NodePath("Menu")
 gameUI = NodePath("Game UI")
 pointsLabel = NodePath("Game UI/Points")
@@ -129,58 +129,6 @@ texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_yev5y")
 position = Vector2(-1.249939, -391.66284)
-scale = Vector2(0.50883895, 1.740528)
-texture = ExtResource("4_wm3ai")
-
-[node name="Tile6" type="Sprite2D" parent="Menu/Control"]
-position = Vector2(1054, 508)
-scale = Vector2(0.80000246, 0.4800049)
-texture = ExtResource("6_8dubc")
-
-[node name="Fire6" type="Sprite2D" parent="Menu/Control/Tile6"]
-texture_filter = 1
-texture_repeat = 2
-material = SubResource("ShaderMaterial_yev5y")
-position = Vector2(-1.2498779, -391.66266)
-scale = Vector2(0.50883895, 1.740528)
-texture = ExtResource("4_wm3ai")
-
-[node name="Tile5" type="Sprite2D" parent="Menu/Control"]
-position = Vector2(1054, 591)
-scale = Vector2(0.80000246, 0.4800049)
-texture = ExtResource("6_8dubc")
-
-[node name="Fire5" type="Sprite2D" parent="Menu/Control/Tile5"]
-texture_filter = 1
-texture_repeat = 2
-material = SubResource("ShaderMaterial_yev5y")
-position = Vector2(-1.2499084, -391.66272)
-scale = Vector2(0.50883895, 1.740528)
-texture = ExtResource("4_wm3ai")
-
-[node name="Tile7" type="Sprite2D" parent="Menu/Control"]
-position = Vector2(1054, 754)
-scale = Vector2(0.80000246, 0.4800049)
-texture = ExtResource("6_8dubc")
-
-[node name="Fire7" type="Sprite2D" parent="Menu/Control/Tile7"]
-texture_filter = 1
-texture_repeat = 2
-material = SubResource("ShaderMaterial_yev5y")
-position = Vector2(-1.2497559, -391.66266)
-scale = Vector2(0.50883895, 1.740528)
-texture = ExtResource("4_wm3ai")
-
-[node name="Tile8" type="Sprite2D" parent="Menu/Control"]
-position = Vector2(1054, 837)
-scale = Vector2(0.80000246, 0.4800049)
-texture = ExtResource("6_8dubc")
-
-[node name="Fire8" type="Sprite2D" parent="Menu/Control/Tile8"]
-texture_filter = 1
-texture_repeat = 2
-material = SubResource("ShaderMaterial_yev5y")
-position = Vector2(-1.2497559, -391.6627)
 scale = Vector2(0.50883895, 1.740528)
 texture = ExtResource("4_wm3ai")
 

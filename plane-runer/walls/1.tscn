@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=4 uid="uid://d8b4lv1hki16"]
+[gd_scene load_steps=19 format=4 uid="uid://d8b4lv1hki16"]
 
 [ext_resource type="Script" uid="uid://bmlyc7ur51tun" path="res://scripts/wall.gd" id="1_v8f2m"]
 [ext_resource type="Texture2D" uid="uid://b4e1g3xkk3a1g" path="res://Models/BuildingDes2_slightly longer square111.png" id="2_5bv53"]
 [ext_resource type="Shader" uid="uid://dlua6pneefck4" path="res://shaders/closeTransparency.gdshader" id="3_7yf7e"]
 [ext_resource type="Texture2D" uid="uid://f2u4hca64y5n" path="res://Models/BuildingDes2_slightly longer square.png" id="3_mjt43"]
 [ext_resource type="Texture2D" uid="uid://dpp8euq65de8i" path="res://Models/BuildingDes_slightly longer square.png" id="4_7yf7e"]
+[ext_resource type="PackedScene" uid="uid://b0nihil4i2ufn" path="res://scenes/ring_high.tscn" id="6_555ud"]
+[ext_resource type="PackedScene" uid="uid://5clglpovj1c1" path="res://scenes/ring.tscn" id="7_nuyva"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_du8hv"]
 resource_name = "Material.004"
@@ -153,3 +155,9 @@ skeleton = NodePath("")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(-2.0940027, 0, -8.742278e-08, 0, 9.180663, 0, 1.8306353e-07, 0, -1, 3.1813383, -10.749759, -0.19002438)
 shape = SubResource("ConcavePolygonShape3D_7yf7e")
+
+[node name="Ring_high" parent="." instance=ExtResource("6_555ud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6949017, 3.7025194, -2.9310355)
+
+[node name="Ring" parent="." instance=ExtResource("7_nuyva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9654005, -0.021969914, -0.050881624)
