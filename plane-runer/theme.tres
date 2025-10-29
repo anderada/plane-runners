@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://datm4mvnqk4ql"]
 
-[sub_resource type="SystemFont" id="SystemFont_wvktn"]
+[ext_resource type="FontFile" uid="uid://ctywq8ojii7ch" path="res://Super Joyful.ttf" id="1_e1x85"]
 
 [resource]
-default_font = SubResource("SystemFont_wvktn")
+default_font = ExtResource("1_e1x85")
 default_font_size = 140

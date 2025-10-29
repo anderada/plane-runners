@@ -24,7 +24,7 @@ func getScores()->void:
 	hiscore.text = "High Scores:\n"
 	var i = 0
 	for ranking in hiscores:
-		if(i == 3):
+		if(i == 5):
 			break
 		hiscore.text = hiscore.text + str(ranking) + "\n"
 		i += 1

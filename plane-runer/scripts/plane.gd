@@ -36,7 +36,7 @@ func get_state() -> void:
 	state = get_tree().get_root().get_node("main").gameState
 
 func reset_position() -> void:
-	position = Vector3(0,-3,0)
+	position = Vector3(-1.5,-1.5,0)
 	
 func get_input() -> void:
 	acceleration.x = 0

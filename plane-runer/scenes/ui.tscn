@@ -1,11 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkfc35o8p12rs"]
+[gd_scene load_steps=13 format=3 uid="uid://dkfc35o8p12rs"]
 
 [ext_resource type="Script" uid="uid://cluj7fmovssj3" path="res://scripts/ui.gd" id="1_wm3ai"]
 [ext_resource type="Theme" uid="uid://datm4mvnqk4ql" path="res://theme.tres" id="2_8dubc"]
-[ext_resource type="Texture2D" uid="uid://bc46au2fs4g48" path="res://Sprites/Heart-icon.png" id="2_wm3ai"]
 [ext_resource type="Shader" uid="uid://cya14id1idpfa" path="res://shaders/ui-fire.gdshader" id="2_x4jx1"]
+[ext_resource type="Texture2D" uid="uid://bao4mvcdei07b" path="res://heart prototype.png" id="3_p7vwb"]
+[ext_resource type="Texture2D" uid="uid://d2e6evp7b0e7n" path="res://ARROW2-unpressed.png" id="4_p7vwb"]
 [ext_resource type="Texture2D" uid="uid://dwb302d67mem5" path="res://Sprites/noise_combined.png" id="4_wm3ai"]
-[ext_resource type="Texture2D" uid="uid://bs02113qf45ky" path="res://Sprites/tile2.png" id="6_8dubc"]
+[ext_resource type="Texture2D" uid="uid://kbhakn03bgv6" path="res://ARROW2-pressed.png" id="5_ktti3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktti3"]
+resource_local_to_scene = true
+shader = ExtResource("2_x4jx1")
+shader_parameter/noise_image = ExtResource("4_wm3ai")
+shader_parameter/speed = 0.29
+shader_parameter/flame_middle = Color(0.77395856, 0.15564677, 0, 1)
+shader_parameter/flame_edge = Color(0.7661904, 0.37958518, 0, 1)
+shader_parameter/threshold = 0.6
+shader_parameter/intensity = 12.92
+shader_parameter/airyness = 0.725
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8dubc"]
 resource_local_to_scene = true
@@ -18,13 +30,24 @@ shader_parameter/threshold = 0.975
 shader_parameter/intensity = 16.73
 shader_parameter/airyness = 0.135
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cgfq5"]
+resource_local_to_scene = true
+shader = ExtResource("2_x4jx1")
+shader_parameter/noise_image = ExtResource("4_wm3ai")
+shader_parameter/speed = 0.29
+shader_parameter/flame_middle = Color(0.56436056, 0.0037555462, 0.9380161, 1)
+shader_parameter/flame_edge = Color(5.7756904e-07, 0.5385845, 0.77295965, 1)
+shader_parameter/threshold = 0.6
+shader_parameter/intensity = 12.92
+shader_parameter/airyness = 0.725
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p7vwb"]
 resource_local_to_scene = true
 shader = ExtResource("2_x4jx1")
 shader_parameter/noise_image = ExtResource("4_wm3ai")
 shader_parameter/speed = 0.63
 shader_parameter/flame_middle = Color(1, 1, 1, 1)
-shader_parameter/flame_edge = Color(0, 1, 0.79999995, 1)
+shader_parameter/flame_edge = Color(0, 1, 0.6333332, 1)
 shader_parameter/threshold = 0.975
 shader_parameter/intensity = 16.73
 shader_parameter/airyness = 0.135
@@ -55,30 +78,33 @@ grow_vertical = 0
 theme = ExtResource("2_8dubc")
 
 [node name="Heart1" type="Sprite2D" parent="Game UI"]
-position = Vector2(75.85, 75.85)
+position = Vector2(93.85, 92.85)
 scale = Vector2(0.4832031, 0.4832031)
-texture = ExtResource("2_wm3ai")
+texture = ExtResource("3_p7vwb")
 
 [node name="Heart2" type="Sprite2D" parent="Game UI"]
-position = Vector2(220.85, 75.85)
+position = Vector2(250.94804, 92.8873)
 scale = Vector2(0.4832031, 0.4832031)
-texture = ExtResource("2_wm3ai")
+texture = ExtResource("3_p7vwb")
 
 [node name="Heart3" type="Sprite2D" parent="Game UI"]
-position = Vector2(363, 75.85)
+position = Vector2(407, 92)
 scale = Vector2(0.4832031, 0.4832031)
-texture = ExtResource("2_wm3ai")
+texture = ExtResource("3_p7vwb")
 
 [node name="Points" type="Label" parent="Game UI"]
 layout_mode = 0
-offset_left = 821.0
-offset_top = -28.0
-offset_right = 1901.0
-offset_bottom = 172.0
+offset_left = 817.0
+offset_top = 4.0
+offset_right = 1897.0
+offset_bottom = 204.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 60
 text = "5000"
 horizontal_alignment = 2
 
 [node name="Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,110 +124,142 @@ offset_right = -251.0
 offset_bottom = -83.0
 
 [node name="Tile" type="Sprite2D" parent="Menu/Control"]
-position = Vector2(649, 671)
-scale = Vector2(0.80000246, 0.4800049)
-texture = ExtResource("6_8dubc")
+position = Vector2(659, 637)
+scale = Vector2(0.15, 0.1)
+texture = ExtResource("4_p7vwb")
 
 [node name="Indicator" type="Node2D" parent="Menu/Control/Tile"]
 
 [node name="Tile5" type="Sprite2D" parent="Menu/Control/Tile/Indicator"]
-texture = ExtResource("6_8dubc")
+texture = ExtResource("5_ktti3")
+
+[node name="Fire3" type="Sprite2D" parent="Menu/Control/Tile/Indicator"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ktti3")
+position = Vector2(20, -1650)
+scale = Vector2(2.196, 6.4020004)
+texture = ExtResource("4_wm3ai")
 
 [node name="Fire2" type="Sprite2D" parent="Menu/Control/Tile/Indicator"]
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_8dubc")
-position = Vector2(-2.499939, -391.66284)
-scale = Vector2(0.50883895, 1.740528)
+position = Vector2(20, -1340)
+scale = Vector2(2.19636, 5.182345)
 texture = ExtResource("4_wm3ai")
 
 [node name="Tile2" type="Sprite2D" parent="Menu/Control"]
-position = Vector2(870, 671)
-scale = Vector2(0.80000246, 0.4800049)
-texture = ExtResource("6_8dubc")
+position = Vector2(847, 637)
+scale = Vector2(0.15, 0.1)
+texture = ExtResource("4_p7vwb")
 
 [node name="Indicator" type="Node2D" parent="Menu/Control/Tile2"]
 
 [node name="Tile5" type="Sprite2D" parent="Menu/Control/Tile2/Indicator"]
-texture = ExtResource("6_8dubc")
+texture = ExtResource("5_ktti3")
+
+[node name="Fire3" type="Sprite2D" parent="Menu/Control/Tile2/Indicator"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ktti3")
+position = Vector2(20, -1650)
+scale = Vector2(2.196, 6.402001)
+texture = ExtResource("4_wm3ai")
 
 [node name="Fire2" type="Sprite2D" parent="Menu/Control/Tile2/Indicator"]
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_8dubc")
-position = Vector2(-2.499939, -391.66284)
-scale = Vector2(0.50883895, 1.740528)
+position = Vector2(20, -1340)
+scale = Vector2(2.19636, 5.182345)
 texture = ExtResource("4_wm3ai")
 
 [node name="Tile3" type="Sprite2D" parent="Menu/Control"]
-position = Vector2(1241, 671)
-scale = Vector2(0.80000246, 0.4800049)
-texture = ExtResource("6_8dubc")
+position = Vector2(1255, 637)
+scale = Vector2(-0.15, 0.1)
+texture = ExtResource("4_p7vwb")
 
 [node name="Indicator" type="Node2D" parent="Menu/Control/Tile3"]
 
 [node name="Tile5" type="Sprite2D" parent="Menu/Control/Tile3/Indicator"]
-texture = ExtResource("6_8dubc")
+texture = ExtResource("5_ktti3")
+
+[node name="Fire3" type="Sprite2D" parent="Menu/Control/Tile3/Indicator"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_cgfq5")
+position = Vector2(20, -1650)
+scale = Vector2(2.196, 6.402001)
+texture = ExtResource("4_wm3ai")
 
 [node name="Fire2" type="Sprite2D" parent="Menu/Control/Tile3/Indicator"]
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_p7vwb")
-position = Vector2(-2.499939, -391.66284)
-scale = Vector2(0.50883895, 1.740528)
+position = Vector2(20, -1340)
+scale = Vector2(2.19636, 5.182345)
 texture = ExtResource("4_wm3ai")
 
 [node name="Tile4" type="Sprite2D" parent="Menu/Control"]
-position = Vector2(1459, 671)
-scale = Vector2(0.80000246, 0.4800049)
-texture = ExtResource("6_8dubc")
+position = Vector2(1443, 637)
+scale = Vector2(-0.15, 0.1)
+texture = ExtResource("4_p7vwb")
 
 [node name="Indicator" type="Node2D" parent="Menu/Control/Tile4"]
 
 [node name="Tile5" type="Sprite2D" parent="Menu/Control/Tile4/Indicator"]
-texture = ExtResource("6_8dubc")
+texture = ExtResource("5_ktti3")
+
+[node name="Fire3" type="Sprite2D" parent="Menu/Control/Tile4/Indicator"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_cgfq5")
+position = Vector2(20, -1650)
+scale = Vector2(2.196, 6.402001)
+texture = ExtResource("4_wm3ai")
 
 [node name="Fire2" type="Sprite2D" parent="Menu/Control/Tile4/Indicator"]
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_p7vwb")
-position = Vector2(-2.499939, -391.66284)
-scale = Vector2(0.50883895, 1.740528)
+position = Vector2(20, -1340)
+scale = Vector2(2.19636, 5.182345)
 texture = ExtResource("4_wm3ai")
 
-[node name="Prompt" type="Label" parent="Menu"]
+[node name="P1" type="Label" parent="Menu/Control"]
 layout_mode = 0
-offset_left = 206.0
-offset_top = 16.0
-offset_right = 1286.0
-offset_bottom = 216.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 65
-text = "Step on to play"
-horizontal_alignment = 2
-
-[node name="P1" type="Label" parent="Menu/Prompt"]
-layout_mode = 0
-offset_left = -744.0
-offset_top = 582.0
-offset_right = 336.0
-offset_bottom = 782.0
+offset_left = -268.0
+offset_top = 711.0
+offset_right = 812.0
+offset_bottom = 911.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 65
 text = "P1"
 horizontal_alignment = 2
 
-[node name="P2" type="Label" parent="Menu/Prompt"]
+[node name="P2" type="Label" parent="Menu/Control"]
 layout_mode = 0
-offset_left = -135.0
-offset_top = 586.0
-offset_right = 945.0
-offset_bottom = 786.0
+offset_left = 341.0
+offset_top = 715.0
+offset_right = 1421.0
+offset_bottom = 915.0
 theme_override_colors/font_color = Color(0, 1, 0.79999995, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 65
 text = "P2"
+horizontal_alignment = 2
+
+[node name="Prompt" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 41.0
+offset_right = 1196.0
+offset_bottom = 241.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+text = "Step on to play"
 horizontal_alignment = 2
 
 [node name="Control2" type="Control" parent="Menu"]
@@ -227,7 +285,7 @@ offset_right = 977.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0.5833334, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 65
+theme_override_constants/outline_size = 15
 text = "Your score"
 horizontal_alignment = 2
 
@@ -239,6 +297,6 @@ offset_right = 1000.0
 offset_bottom = -529.0
 theme_override_colors/font_color = Color(0.99999994, 0.0741991, 0.1706737, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 60
+theme_override_constants/outline_size = 15
 text = "High Scores"
 horizontal_alignment = 2
