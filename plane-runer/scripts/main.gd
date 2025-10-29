@@ -13,14 +13,19 @@ var hearts : Array
 
 @export var frames_per_wall : int = 500
 
+@export var gameState = "game"
+
 func _ready() -> void:
 	for heart in heart_paths:
 		hearts.append(get_node(heart))
 
 func _physics_process(_delta: float) -> void:
-	timer += 1
-	if(timer % frames_per_wall == 1):
-		spawn_wall()
+	if(gameState == "menu"):
+		pass
+	else:
+		timer += 1
+		if(timer % frames_per_wall == 1):
+			spawn_wall()
 
 func spawn_wall()->void:
 	var randomIndex = randi_range(0,wall_prefabs.size() - 1)

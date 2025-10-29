@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn85kchbfbqps"
-path="res://.godot/imported/noise_combined.png-d344895d54fbfca518eb2ad845c53720.ctex"
+uid="uid://dwb302d67mem5"
+path="res://.godot/imported/noise_combined.png-38fb7e070cc1754c02c5573a2297efc1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://noise_combined.png"
-dest_files=["res://.godot/imported/noise_combined.png-d344895d54fbfca518eb2ad845c53720.ctex"]
+source_file="res://Sprites/noise_combined.png"
+dest_files=["res://.godot/imported/noise_combined.png-38fb7e070cc1754c02c5573a2297efc1.ctex"]
 
 [params]
 

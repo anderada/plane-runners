@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg7lgf7gj43ki"
-path="res://.godot/imported/Heart-icon.png-2d192b52bb538acc7d6fa72170999492.ctex"
+uid="uid://cbtoysg4ypx2g"
+path="res://.godot/imported/test_wall.png-06fe9ce8fd42421fb16142858b7f17fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Heart-icon.png"
-dest_files=["res://.godot/imported/Heart-icon.png-2d192b52bb538acc7d6fa72170999492.ctex"]
+source_file="res://Sprites/test_wall.png"
+dest_files=["res://.godot/imported/test_wall.png-06fe9ce8fd42421fb16142858b7f17fb.ctex"]
 
 [params]
 

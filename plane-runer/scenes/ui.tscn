@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkfc35o8p12rs"]
+[gd_scene load_steps=8 format=3 uid="uid://dkfc35o8p12rs"]
 
-[ext_resource type="Texture2D" uid="uid://bg7lgf7gj43ki" path="res://Heart-icon.png" id="1_nt7q6"]
+[ext_resource type="Script" uid="uid://cluj7fmovssj3" path="res://scripts/ui.gd" id="1_wm3ai"]
+[ext_resource type="Texture2D" uid="uid://bc46au2fs4g48" path="res://Sprites/Heart-icon.png" id="2_wm3ai"]
 [ext_resource type="Shader" uid="uid://cya14id1idpfa" path="res://shaders/ui-fire.gdshader" id="2_x4jx1"]
-[ext_resource type="Texture2D" uid="uid://cn85kchbfbqps" path="res://noise_combined.png" id="3_yev5y"]
-[ext_resource type="Texture2D" uid="uid://dovf8jfmyc8lu" path="res://prompt.png" id="4_gdt2y"]
+[ext_resource type="Texture2D" uid="uid://dwb302d67mem5" path="res://Sprites/noise_combined.png" id="4_wm3ai"]
+[ext_resource type="Texture2D" uid="uid://dwp7c5ibcrgwr" path="res://Sprites/prompt.png" id="5_8dubc"]
+[ext_resource type="Texture2D" uid="uid://bs02113qf45ky" path="res://Sprites/tile2.png" id="6_8dubc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yev5y"]
 shader = ExtResource("2_x4jx1")
-shader_parameter/noise_image = ExtResource("3_yev5y")
+shader_parameter/noise_image = ExtResource("4_wm3ai")
 shader_parameter/speed = 1.13
 shader_parameter/flame_middle = Color(1, 0.964, 0.82, 1)
 shader_parameter/flame_edge = Color(1, 0.3, 0, 1)
@@ -16,35 +18,159 @@ shader_parameter/intensity = 16.07
 shader_parameter/airyness = 0.135
 
 [node name="UI" type="Node2D"]
+script = ExtResource("1_wm3ai")
+padIndicators = [NodePath("Menu/Control/Tile/Fire"), NodePath("Menu/Control/Tile2/Fire2"), NodePath("Menu/Control/Tile3/Fire3"), NodePath("Menu/Control/Tile4/Fire4"), NodePath("Menu/Control/Tile5/Fire5"), NodePath("Menu/Control/Tile6/Fire6"), NodePath("Menu/Control/Tile7/Fire7"), NodePath("Menu/Control/Tile8/Fire8")]
 
-[node name="Game UI" type="CanvasGroup" parent="."]
+[node name="Game UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 41.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="Heart1" type="Sprite2D" parent="Game UI"]
-position = Vector2(50.249996, 51.249996)
-scale = Vector2(0.2832031, 0.2832031)
-texture = ExtResource("1_nt7q6")
+position = Vector2(75.85, 75.85)
+scale = Vector2(0.4832031, 0.4832031)
+texture = ExtResource("2_wm3ai")
 
 [node name="Heart2" type="Sprite2D" parent="Game UI"]
-position = Vector2(140.25, 51.249996)
-scale = Vector2(0.2832031, 0.2832031)
-texture = ExtResource("1_nt7q6")
+position = Vector2(220.85, 75.85)
+scale = Vector2(0.4832031, 0.4832031)
+texture = ExtResource("2_wm3ai")
 
 [node name="Heart3" type="Sprite2D" parent="Game UI"]
-position = Vector2(229.25, 51.249996)
-scale = Vector2(0.2832031, 0.2832031)
-texture = ExtResource("1_nt7q6")
+position = Vector2(363, 75.85)
+scale = Vector2(0.4832031, 0.4832031)
+texture = ExtResource("2_wm3ai")
 
-[node name="Start Screen" type="CanvasGroup" parent="."]
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
 
-[node name="Shader test" type="Sprite2D" parent="Start Screen"]
+[node name="Control" type="Control" parent="Menu"]
+anchors_preset = 0
+offset_left = -104.0
+offset_top = -170.0
+offset_right = -64.0
+offset_bottom = -130.0
+
+[node name="Tile" type="Sprite2D" parent="Menu/Control"]
+position = Vector2(649, 671)
+scale = Vector2(0.80000246, 0.4800049)
+texture = ExtResource("6_8dubc")
+
+[node name="Fire" type="Sprite2D" parent="Menu/Control/Tile"]
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_yev5y")
-position = Vector2(88.3572, 536.97906)
-scale = Vector2(0.34235466, 0.4335121)
-texture = ExtResource("3_yev5y")
+position = Vector2(-2.5, -391.66272)
+scale = Vector2(0.50883895, 1.740528)
+texture = ExtResource("4_wm3ai")
 
-[node name="Prompt" type="Sprite2D" parent="Start Screen"]
-position = Vector2(573, 280.00003)
-scale = Vector2(0.36982247, 0.36982247)
-texture = ExtResource("4_gdt2y")
+[node name="Tile2" type="Sprite2D" parent="Menu/Control"]
+position = Vector2(870, 671)
+scale = Vector2(0.80000246, 0.4800049)
+texture = ExtResource("6_8dubc")
+
+[node name="Fire2" type="Sprite2D" parent="Menu/Control/Tile2"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_yev5y")
+position = Vector2(-6.249977, -391.66272)
+scale = Vector2(0.50883895, 1.740528)
+texture = ExtResource("4_wm3ai")
+
+[node name="Tile3" type="Sprite2D" parent="Menu/Control"]
+position = Vector2(1241, 671)
+scale = Vector2(0.80000246, 0.4800049)
+texture = ExtResource("6_8dubc")
+
+[node name="Fire3" type="Sprite2D" parent="Menu/Control/Tile3"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_yev5y")
+position = Vector2(1.250042, -391.66278)
+scale = Vector2(0.50883895, 1.740528)
+texture = ExtResource("4_wm3ai")
+
+[node name="Tile4" type="Sprite2D" parent="Menu/Control"]
+position = Vector2(1459, 671)
+scale = Vector2(0.80000246, 0.4800049)
+texture = ExtResource("6_8dubc")
+
+[node name="Fire4" type="Sprite2D" parent="Menu/Control/Tile4"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_yev5y")
+position = Vector2(-1.249939, -391.66284)
+scale = Vector2(0.50883895, 1.740528)
+texture = ExtResource("4_wm3ai")
+
+[node name="Tile6" type="Sprite2D" parent="Menu/Control"]
+position = Vector2(1054, 508)
+scale = Vector2(0.80000246, 0.4800049)
+texture = ExtResource("6_8dubc")
+
+[node name="Fire6" type="Sprite2D" parent="Menu/Control/Tile6"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_yev5y")
+position = Vector2(-1.2498779, -391.66266)
+scale = Vector2(0.50883895, 1.740528)
+texture = ExtResource("4_wm3ai")
+
+[node name="Tile5" type="Sprite2D" parent="Menu/Control"]
+position = Vector2(1054, 591)
+scale = Vector2(0.80000246, 0.4800049)
+texture = ExtResource("6_8dubc")
+
+[node name="Fire5" type="Sprite2D" parent="Menu/Control/Tile5"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_yev5y")
+position = Vector2(-1.2499084, -391.66272)
+scale = Vector2(0.50883895, 1.740528)
+texture = ExtResource("4_wm3ai")
+
+[node name="Tile7" type="Sprite2D" parent="Menu/Control"]
+position = Vector2(1054, 754)
+scale = Vector2(0.80000246, 0.4800049)
+texture = ExtResource("6_8dubc")
+
+[node name="Fire7" type="Sprite2D" parent="Menu/Control/Tile7"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_yev5y")
+position = Vector2(-1.2497559, -391.66266)
+scale = Vector2(0.50883895, 1.740528)
+texture = ExtResource("4_wm3ai")
+
+[node name="Tile8" type="Sprite2D" parent="Menu/Control"]
+position = Vector2(1054, 837)
+scale = Vector2(0.80000246, 0.4800049)
+texture = ExtResource("6_8dubc")
+
+[node name="Fire8" type="Sprite2D" parent="Menu/Control/Tile8"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_yev5y")
+position = Vector2(-1.2497559, -391.6627)
+scale = Vector2(0.50883895, 1.740528)
+texture = ExtResource("4_wm3ai")
+
+[node name="Prompt" type="Sprite2D" parent="Menu"]
+position = Vector2(956, 124.00001)
+scale = Vector2(0.64982307, 0.64982307)
+texture = ExtResource("5_8dubc")

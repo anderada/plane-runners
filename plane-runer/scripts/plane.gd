@@ -1,8 +1,7 @@
 extends CharacterBody3D
 
-@export var speed : float = 1
-var horizontalSpeeds = [0.7, 2.1]
-var verticalSpeeds = [0.5,1.5]
+@export var horizontalSpeeds = [0.7, 3.5]
+@export var verticalSpeeds = [0.5,2.5]
 var horizontalRotations = [15,30]
 var verticalRotations = [15,30]
 
@@ -10,42 +9,68 @@ var acceleration : Vector3
 
 signal player_hit
 
+@export var iFrames = 60
+var hurtTimer = 0
+
+var speed : float
+var state = "menu"
+
 func _ready() -> void:
 	velocity = Vector3(0,0,0)
+	get_speed()
+	get_state()
 
 func _physics_process(_delta: float) -> void:
-	velocity *= speed
-	move_and_slide()
+	get_speed()
+	get_state()
+	get_input()
+	if(state == "menu"):
+		velocity = Vector3(0,0,0)
+	else:
+		velocity += acceleration * _delta * (speed / 5.0)
+		hurtTimer -= 1
+		move_and_slide()
 	
-func _input(event: InputEvent) -> void:
-	if(event.is_action_pressed("Left1")):
-		velocity.x = -horizontalSpeeds[0]
-		rotation_degrees.z = horizontalRotations[0]
-	elif(event.is_action_pressed("Left2")):
-		velocity.x = -horizontalSpeeds[1]
-		rotation_degrees.z = horizontalRotations[1]
-	elif(event.is_action_pressed("Right1")):
-		velocity.x = horizontalSpeeds[0]
-		rotation_degrees.z = -horizontalRotations[0]
-	elif(event.is_action_pressed("Right2")):
-		velocity.x = horizontalSpeeds[1]
-		rotation_degrees.z = -horizontalRotations[1]
-	elif(event.is_action_pressed("Up1")):
-		velocity.y = verticalSpeeds[0]
-		rotation_degrees.x = verticalRotations[0]
-	elif(event.is_action_pressed("Up2")):
-		velocity.y = verticalSpeeds[1]
-		rotation_degrees.x = verticalRotations[1]
-	elif(event.is_action_pressed("Down1")):
-		velocity.y = -verticalSpeeds[0]
-		rotation_degrees.x = -verticalRotations[0]
-	elif(event.is_action_pressed("Down2")):
-		velocity.y = -verticalSpeeds[1]
-		rotation_degrees.x = -verticalRotations[1]
+func get_speed() -> void:
+	speed = get_tree().get_root().get_node("main").globalSpeed
+	
+func get_state() -> void:
+	state = get_tree().get_root().get_node("main").gameState
+	
+func get_input() -> void:
+	acceleration.x = 0
+	acceleration.y = 0
+	rotation_degrees.z = 0
+	rotation_degrees.x = 0
+	if(Input.is_action_pressed("Left1")):
+		acceleration.x -= horizontalSpeeds[0]
+		rotation_degrees.z += horizontalRotations[0]
+	if(Input.is_action_pressed("Left2")):
+		acceleration.x -= horizontalSpeeds[1]
+		rotation_degrees.z += horizontalRotations[1]
+	if(Input.is_action_pressed("Right1")):
+		acceleration.x += horizontalSpeeds[0]
+		rotation_degrees.z -= horizontalRotations[0]
+	if(Input.is_action_pressed("Right2")):
+		acceleration.x += horizontalSpeeds[1]
+		rotation_degrees.z -= horizontalRotations[1]
+	if(Input.is_action_pressed("Up1")):
+		acceleration.y += verticalSpeeds[0]
+		rotation_degrees.x += verticalRotations[0]
+	if(Input.is_action_pressed("Up2")):
+		acceleration.y += verticalSpeeds[1]
+		rotation_degrees.x += verticalRotations[1]
+	if(Input.is_action_pressed("Down1")):
+		acceleration.y -= verticalSpeeds[0]
+		rotation_degrees.x -= verticalRotations[0]
+	if(Input.is_action_pressed("Down2")):
+		acceleration.y -= verticalSpeeds[1]
+		rotation_degrees.x -= verticalRotations[1]
 
 func hit_wall(body: Node3D)->void:
-	if(body.name == "Plane"):
+	if(body.name == "Plane" && hurtTimer <= 0):
 		player_hit.emit()
+		hurtTimer = iFrames
 
 func connect_wall(wall : Area3D)->void:
 	wall.connect("body_entered", hit_wall)
