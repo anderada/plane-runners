@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dkfc35o8p12rs"]
+[gd_scene load_steps=31 format=3 uid="uid://dkfc35o8p12rs"]
 
 [ext_resource type="Script" uid="uid://cluj7fmovssj3" path="res://scripts/ui.gd" id="1_wm3ai"]
 [ext_resource type="Theme" uid="uid://datm4mvnqk4ql" path="res://theme.tres" id="2_8dubc"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bor8k8twfo1qr" path="res://Sprites/empty heart.png" id="5_vsj0x"]
 [ext_resource type="Texture2D" uid="uid://cj8qhr8mkc38m" path="res://Sprites/footprint.png" id="7_cgfq5"]
 [ext_resource type="Texture2D" uid="uid://ddketyuv1jtm8" path="res://Sprites/footprint_blue.png" id="8_7dvkv"]
+[ext_resource type="Texture2D" uid="uid://82ssk4utx6vv" path="res://Sprites/Sin título12 3.png" id="10_qsv74"]
 
 [sub_resource type="Animation" id="Animation_vsj0x"]
 length = 0.001
@@ -221,10 +222,6 @@ shader_parameter/airyness = 0.2
 [sub_resource type="Animation" id="Animation_vdcm2"]
 length = 0.001
 
-[sub_resource type="Animation" id="Animation_7dvkv"]
-resource_name = "bounce"
-length = 0.4
-
 [sub_resource type="Animation" id="Animation_qsv74"]
 resource_name = "add"
 length = 0.3
@@ -252,6 +249,10 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2809441, 1.2809441), Vector2(0.1, 0.1)]
 }
+
+[sub_resource type="Animation" id="Animation_7dvkv"]
+resource_name = "bounce"
+length = 0.4
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6rmj2"]
 _data = {
@@ -317,6 +318,7 @@ score = NodePath("Menu/Control2/Score")
 hiscore = NodePath("Menu/Control2/HighScore")
 
 [node name="Game UI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -440,7 +442,6 @@ libraries = {
 }
 
 [node name="Menu" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -451,6 +452,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 20.0
 theme = ExtResource("2_8dubc")
+
+[node name="SinTitulo101" type="Sprite2D" parent="Menu"]
+position = Vector2(780.99994, 281.99997)
+scale = Vector2(0.2737745, 0.2737745)
+texture = ExtResource("10_qsv74")
 
 [node name="Control" type="Control" parent="Menu"]
 anchors_preset = 0
