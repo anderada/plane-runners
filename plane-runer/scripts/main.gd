@@ -5,7 +5,6 @@ var playerHP = 3
 var timer: int = 0
 @export var globalSpeed = 5.0
 
-@export var wall_prefabs : Array
 var wall_preloaded : Array
 
 @export var heart_paths : Array
@@ -23,9 +22,20 @@ var hearts : Array
 
 var extantWalls : Array
 
+var nextObject
+
+func loadWalls() -> void:
+	wall_preloaded.append(preload("res://walls/0.tscn"))
+	wall_preloaded.append(preload("res://walls/1.tscn"))
+	wall_preloaded.append(preload("res://walls/2.tscn"))
+	wall_preloaded.append(preload("res://walls/3.tscn"))
+	wall_preloaded.append(preload("res://walls/4.tscn"))
+	wall_preloaded.append(preload("res://walls/5.tscn"))
+
 func _ready() -> void:
 	for heart in heart_paths:
 		hearts.append(get_node(heart))
+	loadWalls()
 
 func _physics_process(_delta: float) -> void:
 	if(gameState == "menu"):
@@ -70,8 +80,9 @@ func remove_old_walls()->void:
 			wall.queue_free()
 
 func spawn_wall()->void:
-	var randomIndex = randi_range(0,wall_prefabs.size() - 1)
-	var newWall = load(wall_prefabs[randomIndex]).instantiate()
+	var newWall
+	var randomIndex = randi_range(0,wall_preloaded.size() - 1)
+	newWall = wall_preloaded[randomIndex].instantiate()
 	add_child(newWall)
 	extantWalls.append(newWall)
 	@warning_ignore("narrowing_conversion")

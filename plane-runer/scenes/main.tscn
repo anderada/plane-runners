@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmc1ytmvij23b"]
+[gd_scene load_steps=14 format=3 uid="uid://cmc1ytmvij23b"]
 
 [ext_resource type="Script" uid="uid://c6o0xexcp7pi5" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://brt1j84wfhd1x" path="res://scripts/camera.gd" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cp4sljfvtkskc" path="res://scenes/plane.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://dkfc35o8p12rs" path="res://scenes/ui.tscn" id="4_jyhfs"]
 [ext_resource type="Shader" uid="uid://cbt5haly7aunm" path="res://shaders/clouds.gdshader" id="5_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://dwb302d67mem5" path="res://Sprites/noise_combined.png" id="6_tefeu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_top_color = Color(0.22189113, 0.75928754, 0.78433245, 1)
@@ -30,22 +29,26 @@ fog_depth_begin = 50.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_o5qli"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_tefeu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tefeu"]
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_jyhfs"]
+subdivide_width = 500
+subdivide_depth = 500
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tbgi4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tefeu"]
+noise = SubResource("FastNoiseLite_tbgi4")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tefeu"]
 render_priority = 0
 shader = ExtResource("5_tbgi4")
-shader_parameter/noise_image = ExtResource("6_tefeu")
+shader_parameter/noise_image = SubResource("NoiseTexture2D_tefeu")
 shader_parameter/speed = 0.03
 shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/repeat = 1.0
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_sugp2")
-wall_prefabs = ["walls/0.tscn", "walls/1.tscn", "walls/2.tscn", "walls/3.tscn", "walls/4.tscn", "walls/5.tscn"]
 heart_paths = ["UI/Game UI/Heart1", "UI/Game UI/Heart2", "UI/Game UI/Heart3"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -96,15 +99,8 @@ shape = SubResource("WorldBoundaryShape3D_o5qli")
 
 [node name="UI" parent="." instance=ExtResource("4_jyhfs")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 0, -8.903477, -267.25595)
-mesh = SubResource("PlaneMesh_tefeu")
-skeleton = NodePath("../Clouds")
-surface_material_override/0 = SubResource("StandardMaterial3D_tefeu")
-
 [node name="Clouds" type="MeshInstance3D" parent="."]
-transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 0, -6, -267.25595)
-visible = false
+transform = Transform3D(60, 0, 0, 0, 60, 0, 0, 0, 60, 0, -7, -52.102)
 mesh = SubResource("PlaneMesh_jyhfs")
 skeleton = NodePath("../Boundaries")
 surface_material_override/0 = SubResource("ShaderMaterial_tefeu")
