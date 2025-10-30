@@ -47,7 +47,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if(gameState == "menu"):
-		if num_inputs() == 2:
+		if num_inputs() == 4:
 			gameState = "game"
 			points = 0
 			timer = 0
@@ -56,9 +56,9 @@ func _physics_process(_delta: float) -> void:
 		timer += 1
 		walltime -= 1
 		globalSpeed = 5.0 + (timer / 400.0)
+		remove_old_walls()
 		if(walltime <= 0):
 			spawn_wall()
-			remove_old_walls()
 			timer += 5
 			walltime = frames_per_wall
 		@warning_ignore("narrowing_conversion")
@@ -106,6 +106,7 @@ func remove_old_walls()->void:
 			extantWalls.erase(wall)
 			wall.queue_free()
 			checkStreak()
+		
 
 func checkStreak()->void:
 	if(ringCollected):
@@ -133,6 +134,7 @@ func take_damage()->void:
 	playerHP -= 1
 	updateHearts()
 	%AudioManager.playSound("crash")
+	%UI.showCrash()
 
 func updateHearts()->void:
 	for heart in hearts:

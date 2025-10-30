@@ -12,8 +12,19 @@ var state = "menu"
 @onready var heart_animator: AnimationPlayer = %heartAnimator
 @onready var heart_indicator: Sprite2D = $"Game UI/HeartIndicator"
 @onready var streak_fire: Sprite2D = $"Game UI/Points/Sprite2D/streakFire"
+@onready var footprint_3: Sprite2D = $Menu/Control/Footprint3
+@onready var footprint_4: Sprite2D = $Menu/Control/Footprint4
+@onready var crash: Control = $"Game UI/crash"
+@onready var crash_animator: AnimationPlayer = $"Game UI/crash/crashAnimator"
 
 signal heartDone
+
+func hideCrash(_animation: StringName):
+	crash.visible = false
+	
+func showCrash():
+	crash.visible = true
+	crash_animator.play("crash")
 
 func showStreak():
 	streak_fire.visible = true
@@ -22,14 +33,15 @@ func hideStreak():
 	streak_fire.visible = false
 
 func  _ready() -> void:
-	hideHeart()
+	hideHeart("")
 	hideStreak()
+	hideCrash("")
 
 func playHeart():
 	heart_indicator.visible = true
 	heart_animator.play("heart")
 
-func hideHeart():
+func hideHeart(_animation: StringName):
 	heart_indicator.visible = false
 	heartDone.emit()
 
@@ -72,15 +84,21 @@ func get_state() -> void:
 func showIndicators() -> void:
 	for indicator in padIndicators:
 		get_node(indicator).visible = false
+	footprint_3.visible = false
+	footprint_4.visible = false
 		
 	if(Input.is_action_pressed("Left1")):
 		get_node(padIndicators[1]).visible = true
+		footprint_3.visible = true
 	if(Input.is_action_pressed("Left2")):
 		get_node(padIndicators[0]).visible = true
+		footprint_3.visible = true
 	if(Input.is_action_pressed("Right1")):
 		get_node(padIndicators[2]).visible = true
+		footprint_4.visible = true
 	if(Input.is_action_pressed("Right2")):
 		get_node(padIndicators[3]).visible = true
+		footprint_4.visible = true
 		
 	if(Input.is_action_just_pressed("Left1")):
 		%AudioManager.playSound("cymbal")
