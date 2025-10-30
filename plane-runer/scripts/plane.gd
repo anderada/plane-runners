@@ -27,7 +27,8 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector3(0,0,0)
 	else:
 		velocity += acceleration * _delta * (speed / 5.0)
-		velocity = acceleration * (speed / 3.0)
+		#velocity = acceleration * (speed / 3.0)
+		velocity -= velocity / 100.0
 		hurtTimer -= 1
 		move_and_slide()
 	

@@ -24,5 +24,8 @@ func playSound(sound:String)->void:
 		"fanfare":
 			fanfare.play()
 
+func startEngine()->void:
+	engine.play()
+
 func stopEngine()->void:
 	engine.stop()

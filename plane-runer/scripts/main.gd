@@ -46,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 			gameState = "game"
 			points = 0
 			timer = 0
+			%AudioManager.playSound("engine")
 	else:
 		timer += 1
 		walltime -= 1
@@ -62,6 +63,7 @@ func _physics_process(_delta: float) -> void:
 			oneGuy = 0
 			playerHP = min(playerHP + 1, 3)
 			updateHearts()
+			%AudioManager.playSound("fanfare")
 			
 	
 	if playerHP <= 0:
@@ -81,12 +83,12 @@ func _physics_process(_delta: float) -> void:
 func ring()->void:
 	points += 100
 	oneGuy += 100
-	%AudioManager.playSound("fanfare")
+	%AudioManager.playSound("cymbal")
 	
 func ring_high()->void:
 	points += 500
 	oneGuy += 500
-	%AudioManager.playSound("fanfare")
+	%AudioManager.playSound("cymbal")
 
 func remove_old_walls()->void:
 	for wall in extantWalls:

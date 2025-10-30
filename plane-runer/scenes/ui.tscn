@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dkfc35o8p12rs"]
+[gd_scene load_steps=20 format=3 uid="uid://dkfc35o8p12rs"]
 
 [ext_resource type="Script" uid="uid://cluj7fmovssj3" path="res://scripts/ui.gd" id="1_wm3ai"]
 [ext_resource type="Theme" uid="uid://datm4mvnqk4ql" path="res://theme.tres" id="2_8dubc"]
@@ -8,6 +8,127 @@
 [ext_resource type="Texture2D" uid="uid://d2e6evp7b0e7n" path="res://ARROW2-unpressed.png" id="4_p7vwb"]
 [ext_resource type="Texture2D" uid="uid://dwb302d67mem5" path="res://Sprites/noise_combined.png" id="4_wm3ai"]
 [ext_resource type="Texture2D" uid="uid://kbhakn03bgv6" path="res://ARROW2-pressed.png" id="5_ktti3"]
+
+[sub_resource type="Animation" id="Animation_ktti3"]
+resource_name = "heart"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.88768786, 0.88768786), Vector2(0.88768786, 0.88768786), Vector2(0.4076878, 0.4076878)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(937.00006, 525.00006), Vector2(937.00006, 525.00006), Vector2(407, 73)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cgfq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.88768786, 0.88768786)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(937.00006, 525.00006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7dvkv"]
+_data = {
+&"RESET": SubResource("Animation_cgfq5"),
+&"heart": SubResource("Animation_ktti3")
+}
+
+[sub_resource type="Animation" id="Animation_7dvkv"]
+resource_name = "bounce"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.099999994, 0.16666669, 0.2, 0.23333333, 0.3, 0.36666667, 0.39999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.95), Vector2(1, 1.2), Vector2(1, 0.95), Vector2(1, 1), Vector2(1, 0.95), Vector2(1, 1.2), Vector2(1, 0.95), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vdcm2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6rmj2"]
+_data = {
+&"RESET": SubResource("Animation_vdcm2"),
+&"bounce": SubResource("Animation_7dvkv")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ktti3"]
 resource_local_to_scene = true
@@ -93,10 +214,16 @@ position = Vector2(407, 72.04645)
 scale = Vector2(0.42157668, 0.42157668)
 texture = ExtResource("3_p7vwb")
 
-[node name="Sprite2D" type="Sprite2D" parent="Game UI"]
-position = Vector2(948.00006, 34)
-scale = Vector2(-0.97742516, 1.1308429)
-texture = ExtResource("4_ktti3")
+[node name="HeartIndicator" type="Sprite2D" parent="Game UI"]
+position = Vector2(937.00006, 525.00006)
+scale = Vector2(0.88768786, 0.88768786)
+texture = ExtResource("3_p7vwb")
+
+[node name="heartAnimator" type="AnimationPlayer" parent="Game UI/HeartIndicator"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_7dvkv")
+}
 
 [node name="Points" type="Label" parent="Game UI"]
 layout_mode = 0
@@ -108,6 +235,16 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 60
 text = "5000"
 horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Game UI/Points"]
+z_index = -1
+position = Vector2(556.784, 35.17588)
+texture = ExtResource("4_ktti3")
+
+[node name="scoreAnimator" type="AnimationPlayer" parent="Game UI/Points"]
+libraries = {
+&"": SubResource("AnimationLibrary_6rmj2")
+}
 
 [node name="Menu" type="Control" parent="."]
 visible = false
