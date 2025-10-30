@@ -13,7 +13,7 @@ var hearts : Array
 
 @export var wall_spawn_distance = 100
 
-@export var frames_per_wall : int = 750
+@export var frames_per_wall : int = 500
 
 @export var gameState = "menu"
 
@@ -32,13 +32,18 @@ func _physics_process(_delta: float) -> void:
 		if num_inputs() == 4:
 			gameState = "game"
 			points = 0
+			timer = 0
 	else:
 		timer += 1
+		globalSpeed = 5.0 + (timer / 400.0)
 		if(timer % 10 == 0):
 			points += 1
-		if(timer % frames_per_wall == 1):
+		if(timer % frames_per_wall < 5):
 			spawn_wall()
 			remove_old_walls()
+			timer += 5
+		@warning_ignore("narrowing_conversion")
+		frames_per_wall = max(500 - (timer / 30.0),100)
 	
 	if playerHP <= 0:
 		gameState = "menu"
