@@ -65,8 +65,6 @@ transform = Transform3D(-0.00131979, -0.999973, 0.00721176, 0.214098, 0.00676198
 [node name="Plane" parent="." instance=ExtResource("3_jyhfs")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1.5, 0)
-horizontalSpeeds = [1.5, 3.5]
-verticalSpeeds = [1.0, 2.5]
 iFrames = 200
 
 [node name="Boundaries" type="Node3D" parent="."]
@@ -101,6 +99,7 @@ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 8, 0
 shape = SubResource("WorldBoundaryShape3D_o5qli")
 
 [node name="UI" parent="." instance=ExtResource("4_jyhfs")]
+unique_name_in_owner = true
 
 [node name="Clouds" type="MeshInstance3D" parent="."]
 transform = Transform3D(60, 0, 0, 0, 60, 0, 0, 0, 60, 0, -7, -52.102)
@@ -111,5 +110,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_tefeu")
 [node name="AudioManager" parent="." instance=ExtResource("6_tefeu")]
 unique_name_in_owner = true
 
+[connection signal="streakActive" from="." to="UI" method="showStreak"]
+[connection signal="streakInactive" from="." to="UI" method="hideStreak"]
 [connection signal="player_hit" from="Plane" to="." method="take_damage"]
 [connection signal="player_hit" from="Plane" to="Camera3D" method="camera_shake"]
+[connection signal="heartDone" from="UI" to="." method="updateHearts"]

@@ -8,6 +8,8 @@ extends Node
 @onready var swoosh: AudioStreamPlayer3D = $swoosh
 @onready var cymbal: AudioStreamPlayer3D = $cymbal
 @onready var fanfare: AudioStreamPlayer3D = $fanfare
+@onready var streak: AudioStreamPlayer3D = $streak
+
 
 func playSound(sound:String)->void:
 	match sound:
@@ -23,6 +25,8 @@ func playSound(sound:String)->void:
 			cymbal.play()
 		"fanfare":
 			fanfare.play()
+		"streak":
+			streak.play()
 
 func startEngine()->void:
 	engine.play()

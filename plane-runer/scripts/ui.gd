@@ -8,6 +8,33 @@ extends Node2D
 @export var hiscore : Label
 
 var state = "menu"
+@onready var score_animator: AnimationPlayer = %scoreAnimator
+@onready var heart_animator: AnimationPlayer = %heartAnimator
+@onready var heart_indicator: Sprite2D = $"Game UI/HeartIndicator"
+@onready var streak_fire: Sprite2D = $"Game UI/Points/Sprite2D/streakFire"
+
+signal heartDone
+
+func showStreak():
+	streak_fire.visible = true
+
+func hideStreak():
+	streak_fire.visible = false
+
+func  _ready() -> void:
+	hideHeart()
+	hideStreak()
+
+func playHeart():
+	heart_indicator.visible = true
+	heart_animator.play("heart")
+
+func hideHeart():
+	heart_indicator.visible = false
+	heartDone.emit()
+
+func playBounce():
+	score_animator.play("bounce")
 
 func _physics_process(_delta: float) -> void:
 	get_state()

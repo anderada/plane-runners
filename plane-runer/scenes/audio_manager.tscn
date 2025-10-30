@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpm7ak40nwxqm"]
+[gd_scene load_steps=11 format=3 uid="uid://dpm7ak40nwxqm"]
 
 [ext_resource type="Script" uid="uid://qixp4jqlxjhy" path="res://scripts/audio_manager.gd" id="1_8qd8g"]
 [ext_resource type="AudioStream" uid="uid://buwu3jxxji40r" path="res://Sounds/crash.wav" id="2_02gw7"]
@@ -8,7 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://bkt0ccxbxj3oe" path="res://Sounds/engine_mid.wav" id="2_njtn3"]
 [ext_resource type="AudioStream" uid="uid://b6uk4ua8wphy4" path="res://Sounds/FranticChaseLoop.wav" id="2_ujhup"]
 [ext_resource type="AudioStream" uid="uid://derpb1elrs3gj" path="res://Sounds/symbol_1.wav" id="3_aoitu"]
-[ext_resource type="AudioStream" uid="uid://cmv0et0swland" path="res://Sounds/victoryfanfare2.wav" id="9_ujhup"]
+[ext_resource type="AudioStream" uid="uid://dkr0mo1mbbrjh" path="res://Sounds/victoryfanfare1R.wav" id="9_ujhup"]
+[ext_resource type="AudioStream" uid="uid://dxtrykaobw7wo" path="res://Sounds/streakFanfare2.wav" id="10_064dn"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_8qd8g")
@@ -39,5 +40,8 @@ volume_db = 22.242
 
 [node name="fanfare" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("9_ujhup")
+
+[node name="streak" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_064dn")
 
 [connection signal="finished" from="EngineStart" to="." method="startEngine"]

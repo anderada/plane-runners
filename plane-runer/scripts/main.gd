@@ -25,6 +25,11 @@ var extantWalls : Array
 
 var oneGuy : int = 0
 
+var ringCollected = false
+var streak = 0
+signal streakActive
+signal streakInactive
+
 func loadWalls() -> void:
 	wall_preloaded.append(preload("res://walls/0.tscn"))
 	wall_preloaded.append(preload("res://walls/1.tscn"))
@@ -62,8 +67,8 @@ func _physics_process(_delta: float) -> void:
 		if(oneGuy >= 2000):
 			oneGuy = 0
 			playerHP = min(playerHP + 1, 3)
-			updateHearts()
 			%AudioManager.playSound("fanfare")
+			%UI.playHeart()
 			
 	
 	if playerHP <= 0:
@@ -80,21 +85,39 @@ func _physics_process(_delta: float) -> void:
 		extantWalls.clear()
 		updateHearts()
 
+
 func ring()->void:
 	points += 100
 	oneGuy += 100
+	ringCollected = true
 	%AudioManager.playSound("cymbal")
+	%UI.playBounce()
 	
 func ring_high()->void:
 	points += 500
 	oneGuy += 500
+	ringCollected = true
 	%AudioManager.playSound("cymbal")
+	%UI.playBounce()
 
 func remove_old_walls()->void:
 	for wall in extantWalls:
-		if wall.position.z >= 10:
+		if wall.position.z >= 1:
 			extantWalls.erase(wall)
 			wall.queue_free()
+			checkStreak()
+
+func checkStreak()->void:
+	if(ringCollected):
+		streak += 1
+		ringCollected = false
+	else:
+		streak = 0
+		streakInactive.emit()
+	if(streak > 4):
+		streakActive.emit()
+		%AudioManager.playSound("streak")
+	
 
 func spawn_wall()->void:
 	var newWall
@@ -114,8 +137,9 @@ func take_damage()->void:
 func updateHearts()->void:
 	for heart in hearts:
 		heart.visible = false
-	for i in range(playerHP):
-		hearts[i].visible = true
+	if hearts.size() > 0:
+		for i in range(playerHP):
+			hearts[i].visible = true
 		
 
 func num_inputs()->int:
