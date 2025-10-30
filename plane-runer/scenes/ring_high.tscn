@@ -93,3 +93,11 @@ libraries = {
 }
 autoplay = "spin"
 speed_scale = 0.2
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(4.881428, 0, 0, 0, 4.881428, 0, 0, 0, 1, 0, 0, 0)
+shaded = true
+alpha_cut = 3
+alpha_hash_scale = 0.0
+text = "500
+"

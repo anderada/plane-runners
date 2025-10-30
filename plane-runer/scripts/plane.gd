@@ -5,6 +5,11 @@ extends CharacterBody3D
 var horizontalRotations = [15,30]
 var verticalRotations = [15,30]
 
+@onready var left_2: MeshInstance3D = $left2
+@onready var left_1: MeshInstance3D = $left1
+@onready var right_1: MeshInstance3D = $right1
+@onready var right_2: MeshInstance3D = $right2
+
 var acceleration : Vector3
 var drift : Vector3
 
@@ -46,18 +51,27 @@ func get_input() -> void:
 	acceleration.y = 0
 	rotation_degrees.z = 0
 	rotation_degrees.x = 0
+	left_1.visible = false
+	left_2.visible = false
+	right_1.visible = false
+	right_2.visible = false
+	
 	if(Input.is_action_pressed("Left1")):
 		acceleration.x -= horizontalSpeeds[0]
 		rotation_degrees.z += horizontalRotations[0]
+		left_1.visible = true
 	if(Input.is_action_pressed("Left2")):
 		acceleration.x -= horizontalSpeeds[1]
 		rotation_degrees.z += horizontalRotations[1]
+		left_2.visible = true
 	if(Input.is_action_pressed("Right1")):
 		acceleration.x += horizontalSpeeds[0]
 		rotation_degrees.z -= horizontalRotations[0]
+		right_1.visible = true
 	if(Input.is_action_pressed("Right2")):
 		acceleration.x += horizontalSpeeds[1]
 		rotation_degrees.z -= horizontalRotations[1]
+		right_2.visible = true
 	if(Input.is_action_pressed("Up1")):
 		acceleration.y += verticalSpeeds[0]
 		rotation_degrees.x += verticalRotations[0]

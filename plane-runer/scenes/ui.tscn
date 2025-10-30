@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dkfc35o8p12rs"]
+[gd_scene load_steps=30 format=3 uid="uid://dkfc35o8p12rs"]
 
 [ext_resource type="Script" uid="uid://cluj7fmovssj3" path="res://scripts/ui.gd" id="1_wm3ai"]
 [ext_resource type="Theme" uid="uid://datm4mvnqk4ql" path="res://theme.tres" id="2_8dubc"]
@@ -10,8 +10,60 @@
 [ext_resource type="Texture2D" uid="uid://dsovdg76pt1hq" path="res://Sprites/Crash_Cartoony_Effect_2.png" id="4_vsj0x"]
 [ext_resource type="Texture2D" uid="uid://dwb302d67mem5" path="res://Sprites/noise_combined.png" id="4_wm3ai"]
 [ext_resource type="Texture2D" uid="uid://kbhakn03bgv6" path="res://ARROW2-pressed.png" id="5_ktti3"]
+[ext_resource type="Texture2D" uid="uid://bor8k8twfo1qr" path="res://Sprites/empty heart.png" id="5_vsj0x"]
 [ext_resource type="Texture2D" uid="uid://cj8qhr8mkc38m" path="res://Sprites/footprint.png" id="7_cgfq5"]
 [ext_resource type="Texture2D" uid="uid://ddketyuv1jtm8" path="res://Sprites/footprint_blue.png" id="8_7dvkv"]
+
+[sub_resource type="Animation" id="Animation_vsj0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CrashCartoonyEffect2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.52, 0.52)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CrashCartoonyEffect2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.56, 0.56)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_6rmj2"]
 resource_name = "crash"
@@ -63,57 +115,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.5235988, 0.0, -0.5235988, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_vsj0x"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../CrashCartoonyEffect2:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.52, 0.52)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CrashCartoonyEffect2:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.56, 0.56)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qsv74"]
@@ -219,38 +220,43 @@ shader_parameter/airyness = 0.2
 
 [sub_resource type="Animation" id="Animation_vdcm2"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_7dvkv"]
 resource_name = "bounce"
 length = 0.4
+
+[sub_resource type="Animation" id="Animation_qsv74"]
+resource_name = "add"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.099999994, 0.16666669, 0.2, 0.23333333, 0.3, 0.36666667, 0.39999998),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.13301903, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.95), Vector2(1, 1.2), Vector2(1, 0.95), Vector2(1, 1), Vector2(1, 0.95), Vector2(1, 1.2), Vector2(1, 0.95), Vector2(1, 1)]
+"values": [Vector2(394, 402), Vector2(229, 191.00003), Vector2(872, 64.00001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13301903, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2809441, 1.2809441), Vector2(0.1, 0.1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6rmj2"]
 _data = {
 &"RESET": SubResource("Animation_vdcm2"),
+&"add": SubResource("Animation_qsv74"),
 &"bounce": SubResource("Animation_7dvkv")
 }
 
@@ -344,6 +350,21 @@ libraries = {
 &"": SubResource("AnimationLibrary_qsv74")
 }
 
+[node name="Heart4" type="Sprite2D" parent="Game UI"]
+position = Vector2(99.71864, 64.52695)
+scale = Vector2(0.42157668, 0.42157668)
+texture = ExtResource("5_vsj0x")
+
+[node name="Heart5" type="Sprite2D" parent="Game UI"]
+position = Vector2(259.6667, 64.414246)
+scale = Vector2(0.42157668, 0.42157668)
+texture = ExtResource("5_vsj0x")
+
+[node name="Heart6" type="Sprite2D" parent="Game UI"]
+position = Vector2(415.71863, 63.526947)
+scale = Vector2(0.42157668, 0.42157668)
+texture = ExtResource("5_vsj0x")
+
 [node name="Heart1" type="Sprite2D" parent="Game UI"]
 position = Vector2(91, 73.04645)
 scale = Vector2(0.42157668, 0.42157668)
@@ -396,6 +417,24 @@ texture = ExtResource("4_wm3ai")
 
 [node name="scoreAnimator" type="AnimationPlayer" parent="Game UI/Points"]
 unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_6rmj2")
+}
+
+[node name="scoreAdd" type="Label" parent="Game UI"]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 191.00003
+offset_right = 1309.0
+offset_bottom = 390.99826
+scale = Vector2(1.2809441, 1.2809441)
+theme_override_colors/font_color = Color(0.47500002, 1, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 60
+text = "+100"
+horizontal_alignment = 1
+
+[node name="addAnimator" type="AnimationPlayer" parent="Game UI/scoreAdd"]
 libraries = {
 &"": SubResource("AnimationLibrary_6rmj2")
 }
@@ -620,3 +659,4 @@ horizontal_alignment = 2
 
 [connection signal="animation_finished" from="Game UI/crash/crashAnimator" to="." method="hideCrash"]
 [connection signal="animation_finished" from="Game UI/HeartIndicator/heartAnimator" to="." method="hideHeart"]
+[connection signal="animation_finished" from="Game UI/scoreAdd/addAnimator" to="." method="hideAdd"]

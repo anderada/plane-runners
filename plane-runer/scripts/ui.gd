@@ -16,8 +16,18 @@ var state = "menu"
 @onready var footprint_4: Sprite2D = $Menu/Control/Footprint4
 @onready var crash: Control = $"Game UI/crash"
 @onready var crash_animator: AnimationPlayer = $"Game UI/crash/crashAnimator"
+@onready var add_animator: AnimationPlayer = $"Game UI/scoreAdd/addAnimator"
+@onready var score_add: Label = $"Game UI/scoreAdd"
 
 signal heartDone
+
+func hideAdd(_animation: StringName):
+	score_add.visible = false
+
+func showAdd(value: int):
+	score_add.text = "+" + str(value)
+	score_add.visible = true
+	add_animator.play("add")
 
 func hideCrash(_animation: StringName):
 	crash.visible = false
@@ -36,6 +46,7 @@ func  _ready() -> void:
 	hideHeart("")
 	hideStreak()
 	hideCrash("")
+	hideAdd("")
 
 func playHeart():
 	heart_indicator.visible = true

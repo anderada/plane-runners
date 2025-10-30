@@ -1,10 +1,12 @@
-[gd_scene load_steps=95 format=4 uid="uid://cp4sljfvtkskc"]
+[gd_scene load_steps=101 format=4 uid="uid://cp4sljfvtkskc"]
 
 [ext_resource type="Script" uid="uid://b3n8q5h2tbfj4" path="res://scripts/plane.gd" id="1_dt3pm"]
 [ext_resource type="Texture2D" uid="uid://iie6bperhhww" path="res://Models/Airplane_red steel.jpg" id="2_ec1pi"]
 [ext_resource type="Texture2D" uid="uid://cwmjnbumyflt1" path="res://Models/Airplane_black texture.png" id="3_gvt5p"]
 [ext_resource type="Texture2D" uid="uid://bq17cw3u40iyn" path="res://Models/Airplane_white steel.jpg" id="4_lf188"]
 [ext_resource type="Texture2D" uid="uid://cpro1600ar7xo" path="res://Models/Airplane_blue glass 2.png" id="5_7mohe"]
+[ext_resource type="Texture2D" uid="uid://bkkalg1018ujx" path="res://Sprites/stick_lean.png" id="6_gvt5p"]
+[ext_resource type="Texture2D" uid="uid://cxp0fdbl2l3dh" path="res://Sprites/stick_stand.png" id="7_lf188"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o5qli"]
 size = Vector3(0.8935547, 0.5234375, 0.8779297)
@@ -1359,6 +1361,21 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qfrvj")
 
+[sub_resource type="QuadMesh" id="QuadMesh_lf188"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mohe"]
+transparency = 1
+albedo_texture = ExtResource("6_gvt5p")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31wwe"]
+transparency = 1
+albedo_texture = ExtResource("7_lf188")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqcjx"]
+transparency = 1
+albedo_texture = ExtResource("6_gvt5p")
+uv1_scale = Vector3(-1, 1, 1)
+
 [node name="Plane" type="CharacterBody3D"]
 script = ExtResource("1_dt3pm")
 
@@ -1558,3 +1575,23 @@ skeleton = NodePath("")
 transform = Transform3D(0.11118654, 3.563349, 0, -1.1408845, 0.3472713, 0, 0, 0, 1.0871332, -1.4972258, 1.953833, -0.010815939)
 mesh = SubResource("ArrayMesh_d8bfe")
 skeleton = NodePath("")
+
+[node name="left2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.48406637, 0, 0, 0, 0.6527363, 0, 0, 0, 1, -1.0273626, 0.6075814, 0.46305507)
+mesh = SubResource("QuadMesh_lf188")
+surface_material_override/0 = SubResource("StandardMaterial3D_7mohe")
+
+[node name="left1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.48406637, 0, 0, 0, 0.6527363, 0, 0, 0, 1, -0.3973359, 0.5330225, 0.46305496)
+mesh = SubResource("QuadMesh_lf188")
+surface_material_override/0 = SubResource("StandardMaterial3D_31wwe")
+
+[node name="right1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.48406637, 0, 0, 0, 0.6527363, 0, 0, 0, 1, 0.34889948, 0.5330225, 0.46305496)
+mesh = SubResource("QuadMesh_lf188")
+surface_material_override/0 = SubResource("StandardMaterial3D_31wwe")
+
+[node name="right2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.48406637, 0, 0, 0, 0.6527363, 0, 0, 0, 1, 0.9189124, 0.60094255, 0.46305507)
+mesh = SubResource("QuadMesh_lf188")
+surface_material_override/0 = SubResource("StandardMaterial3D_nqcjx")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://dpx6uo8dee1ly"]
+[gd_scene load_steps=10 format=4 uid="uid://dpx6uo8dee1ly"]
 
 [ext_resource type="Script" uid="uid://bmlyc7ur51tun" path="res://scripts/wall.gd" id="1_bgjjv"]
 [ext_resource type="PackedScene" uid="uid://b0nihil4i2ufn" path="res://scenes/ring_high.tscn" id="2_v1owr"]
 [ext_resource type="PackedScene" uid="uid://5clglpovj1c1" path="res://scenes/ring.tscn" id="3_pq1lq"]
+[ext_resource type="PackedScene" uid="uid://c7m4lqsb6n5vk" path="res://Models/building6.glb" id="4_v1owr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2itsh"]
 
@@ -50,7 +51,7 @@ script = ExtResource("1_bgjjv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4398191, -3.1813848, 1.8509092)
 
 [node name="Ring" parent="." instance=ExtResource("3_pq1lq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.20888, 2.9537811, 1.501251)
+transform = Transform3D(0.8469822, 0, 0, 0, 0.79025733, 0, 0, 0, 1, 6.2604337, 2.8163047, 1.501251)
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(16, 0, 0, 0, 9, 0, 0, 0, 1, 0, 0, 0)
@@ -60,6 +61,7 @@ skeleton = NodePath("../Ring_high")
 
 [node name="grayBox3" type="Node3D" parent="."]
 transform = Transform3D(2.3107514, 0, 0, 0, 1.6288284, 0, 0, 0, 1, 5.900981, -3.2964728, -0.025037289)
+visible = false
 
 [node name="Cube" type="MeshInstance3D" parent="grayBox3"]
 mesh = SubResource("ArrayMesh_xemwd")
@@ -68,3 +70,6 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2.3107514, 0, 0, 0, 1.6288284, 0, 0, 0, 1, 5.900981, -3.2964728, -0.025037289)
 shape = SubResource("ConcavePolygonShape3D_bgjjv")
+
+[node name="building6" parent="." instance=ExtResource("4_v1owr")]
+transform = Transform3D(2.2044706, 0, 0, 0, 1.6841527, 0, 0, 0, 1, 5.4866548, -3.4884748, 0.05202484)

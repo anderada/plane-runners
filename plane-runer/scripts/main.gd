@@ -12,7 +12,7 @@ var hearts : Array
 
 @export var wall_spawn_distance = 100
 
-@export var frames_per_wall : int = 700
+@export var frames_per_wall : int = 600
 var walltime = 0
 
 @export var gameState = "menu"
@@ -39,6 +39,20 @@ func loadWalls() -> void:
 	wall_preloaded.append(preload("res://walls/5.tscn"))
 	wall_preloaded.append(preload("res://walls/6.tscn"))
 	wall_preloaded.append(preload("res://walls/7.tscn"))
+	wall_preloaded.append(preload("res://walls/8.tscn"))
+	wall_preloaded.append(preload("res://walls/9.tscn"))
+	wall_preloaded.append(preload("res://walls/10.tscn"))
+	wall_preloaded.append(preload("res://walls/11.tscn"))
+	wall_preloaded.append(preload("res://walls/12.tscn"))
+	wall_preloaded.append(preload("res://walls/13.tscn"))
+	wall_preloaded.append(preload("res://walls/14.tscn"))
+	wall_preloaded.append(preload("res://walls/15.tscn"))
+	wall_preloaded.append(preload("res://walls/16.tscn"))
+	wall_preloaded.append(preload("res://walls/17.tscn"))
+	wall_preloaded.append(preload("res://walls/18.tscn"))
+	wall_preloaded.append(preload("res://walls/19.tscn"))
+	wall_preloaded.append(preload("res://walls/20.tscn"))
+	
 
 func _ready() -> void:
 	for heart in heart_paths:
@@ -62,7 +76,7 @@ func _physics_process(_delta: float) -> void:
 			timer += 5
 			walltime = frames_per_wall
 		@warning_ignore("narrowing_conversion")
-		frames_per_wall = max(700 - (timer / 10.0),200)
+		frames_per_wall = max(400 - (timer / 10.0),150)
 		
 		if(oneGuy >= 2000):
 			oneGuy = 0
@@ -91,14 +105,18 @@ func ring()->void:
 	oneGuy += 100
 	ringCollected = true
 	%AudioManager.playSound("cymbal")
+	%AudioManager.playSound("coin")
 	%UI.playBounce()
+	%UI.showAdd(100)
 	
 func ring_high()->void:
 	points += 500
 	oneGuy += 500
 	ringCollected = true
 	%AudioManager.playSound("cymbal")
+	%AudioManager.playSound("coin")
 	%UI.playBounce()
+	%UI.showAdd(500)
 
 func remove_old_walls()->void:
 	for wall in extantWalls:
