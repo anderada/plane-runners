@@ -12,7 +12,8 @@ var hearts : Array
 
 @export var wall_spawn_distance = 100
 
-@export var frames_per_wall : int = 500
+@export var frames_per_wall : int = 700
+var walltime = 0
 
 @export var gameState = "menu"
 
@@ -22,7 +23,7 @@ var hearts : Array
 
 var extantWalls : Array
 
-var nextObject
+var oneGuy : int = 0
 
 func loadWalls() -> void:
 	wall_preloaded.append(preload("res://walls/0.tscn"))
@@ -31,6 +32,8 @@ func loadWalls() -> void:
 	wall_preloaded.append(preload("res://walls/3.tscn"))
 	wall_preloaded.append(preload("res://walls/4.tscn"))
 	wall_preloaded.append(preload("res://walls/5.tscn"))
+	wall_preloaded.append(preload("res://walls/6.tscn"))
+	wall_preloaded.append(preload("res://walls/7.tscn"))
 
 func _ready() -> void:
 	for heart in heart_paths:
@@ -39,23 +42,31 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if(gameState == "menu"):
-		if num_inputs() == 4:
+		if num_inputs() == 2:
 			gameState = "game"
 			points = 0
 			timer = 0
 	else:
 		timer += 1
+		walltime -= 1
 		globalSpeed = 5.0 + (timer / 400.0)
-		if(timer % 10 == 0):
-			points += 1
-		if(timer % frames_per_wall < 5):
+		if(walltime <= 0):
 			spawn_wall()
 			remove_old_walls()
 			timer += 5
+			walltime = frames_per_wall
 		@warning_ignore("narrowing_conversion")
-		frames_per_wall = max(500 - (timer / 30.0),100)
+		frames_per_wall = max(700 - (timer / 10.0),200)
+		
+		if(oneGuy >= 2000):
+			oneGuy = 0
+			playerHP = min(playerHP + 1, 3)
+			updateHearts()
+			
 	
 	if playerHP <= 0:
+		%AudioManager.playSound("fail")
+		%AudioManager.stopEngine()
 		gameState = "menu"
 		scores.append(points)
 		scores.sort()
@@ -69,9 +80,13 @@ func _physics_process(_delta: float) -> void:
 
 func ring()->void:
 	points += 100
+	oneGuy += 100
+	%AudioManager.playSound("fanfare")
 	
 func ring_high()->void:
 	points += 500
+	oneGuy += 500
+	%AudioManager.playSound("fanfare")
 
 func remove_old_walls()->void:
 	for wall in extantWalls:
@@ -92,6 +107,7 @@ func spawn_wall()->void:
 func take_damage()->void:
 	playerHP -= 1
 	updateHearts()
+	%AudioManager.playSound("crash")
 
 func updateHearts()->void:
 	for heart in hearts:

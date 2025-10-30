@@ -6,6 +6,7 @@ var horizontalRotations = [15,30]
 var verticalRotations = [15,30]
 
 var acceleration : Vector3
+var drift : Vector3
 
 signal player_hit
 
@@ -26,6 +27,7 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector3(0,0,0)
 	else:
 		velocity += acceleration * _delta * (speed / 5.0)
+		velocity = acceleration * (speed / 3.0)
 		hurtTimer -= 1
 		move_and_slide()
 	

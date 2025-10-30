@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkfc35o8p12rs"]
+[gd_scene load_steps=14 format=3 uid="uid://dkfc35o8p12rs"]
 
 [ext_resource type="Script" uid="uid://cluj7fmovssj3" path="res://scripts/ui.gd" id="1_wm3ai"]
 [ext_resource type="Theme" uid="uid://datm4mvnqk4ql" path="res://theme.tres" id="2_8dubc"]
 [ext_resource type="Shader" uid="uid://cya14id1idpfa" path="res://shaders/ui-fire.gdshader" id="2_x4jx1"]
 [ext_resource type="Texture2D" uid="uid://bao4mvcdei07b" path="res://heart prototype.png" id="3_p7vwb"]
+[ext_resource type="Texture2D" uid="uid://cjjwlqa3odghp" path="res://Sprites/NOTCH.png" id="4_ktti3"]
 [ext_resource type="Texture2D" uid="uid://d2e6evp7b0e7n" path="res://ARROW2-unpressed.png" id="4_p7vwb"]
 [ext_resource type="Texture2D" uid="uid://dwb302d67mem5" path="res://Sprites/noise_combined.png" id="4_wm3ai"]
 [ext_resource type="Texture2D" uid="uid://kbhakn03bgv6" path="res://ARROW2-pressed.png" id="5_ktti3"]
@@ -78,32 +79,38 @@ grow_vertical = 0
 theme = ExtResource("2_8dubc")
 
 [node name="Heart1" type="Sprite2D" parent="Game UI"]
-position = Vector2(93.85, 92.85)
-scale = Vector2(0.4832031, 0.4832031)
+position = Vector2(91, 73.04645)
+scale = Vector2(0.42157668, 0.42157668)
 texture = ExtResource("3_p7vwb")
 
 [node name="Heart2" type="Sprite2D" parent="Game UI"]
-position = Vector2(250.94804, 92.8873)
-scale = Vector2(0.4832031, 0.4832031)
+position = Vector2(250.94804, 72.93375)
+scale = Vector2(0.42157668, 0.42157668)
 texture = ExtResource("3_p7vwb")
 
 [node name="Heart3" type="Sprite2D" parent="Game UI"]
-position = Vector2(407, 92)
-scale = Vector2(0.4832031, 0.4832031)
+position = Vector2(407, 72.04645)
+scale = Vector2(0.42157668, 0.42157668)
 texture = ExtResource("3_p7vwb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Game UI"]
+position = Vector2(948.00006, 34)
+scale = Vector2(-0.97742516, 1.1308429)
+texture = ExtResource("4_ktti3")
 
 [node name="Points" type="Label" parent="Game UI"]
 layout_mode = 0
-offset_left = 817.0
-offset_top = 4.0
-offset_right = 1897.0
-offset_bottom = 204.0
+offset_left = 394.0
+offset_top = -1.0
+offset_right = 1474.0
+offset_bottom = 199.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 60
 text = "5000"
-horizontal_alignment = 2
+horizontal_alignment = 1
 
 [node name="Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -54,3 +54,12 @@ func showIndicators() -> void:
 		get_node(padIndicators[2]).visible = true
 	if(Input.is_action_pressed("Right2")):
 		get_node(padIndicators[3]).visible = true
+		
+	if(Input.is_action_just_pressed("Left1")):
+		%AudioManager.playSound("cymbal")
+	if(Input.is_action_just_pressed("Left2")):
+		%AudioManager.playSound("cymbal")
+	if(Input.is_action_just_pressed("Right1")):
+		%AudioManager.playSound("cymbal")
+	if(Input.is_action_just_pressed("Right2")):
+		%AudioManager.playSound("cymbal")

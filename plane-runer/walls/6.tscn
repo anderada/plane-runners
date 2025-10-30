@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7lkpo2dykns2"]
+
+[ext_resource type="Script" uid="uid://bmlyc7ur51tun" path="res://scripts/wall.gd" id="1_tvk5w"]
+[ext_resource type="PackedScene" uid="uid://b0nihil4i2ufn" path="res://scenes/ring_high.tscn" id="2_r0i73"]
+[ext_resource type="PackedScene" uid="uid://5clglpovj1c1" path="res://scenes/ring.tscn" id="3_l71lf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2itsh"]
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_tvk5w")
+
+[node name="Ring_high" parent="." instance=ExtResource("2_r0i73")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.207355, -1.2193513, 1.8509092)
+
+[node name="Ring" parent="." instance=ExtResource("3_l71lf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4181437, 3.3418941, 1.501251)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(16, 0, 0, 0, 9, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_2itsh")
+skeleton = NodePath("../Ring_high")
